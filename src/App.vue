@@ -1,28 +1,75 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <section>
+    <vuePriorityNav #default="{ menuItems, moreMenuItems }" :nav="navigation">
+      <ul class="mainnav list-unstyled d-flex flex-wrap">
+        <li
+          class="p-2 px-4 bg-light"
+          v-for="menuItem in menuItems"
+          :key="menuItem.id"
+        >
+          {{ menuItem.label }}
+        </li>
+        <li class="p-2 px-4 bg-light" v-if="moreMenuItems.length > 0">
+          more
+          <ul>
+            <li v-for="moreMenuItem in moreMenuItems" :key="moreMenuItem.id">
+              {{ moreMenuItem.label }} (more)
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </vuePriorityNav>
+  </section>
 </template>
 
-<script>
-import HelloWorld from "./components/HelloWorld.vue";
+<style lang="scss">
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+}
+</style>
 
+<style lang="scss" scoped>
+@keyframes menuWidth {
+  from {
+    width: 80vw;
+  }
+  to {
+    width: 400px;
+  }
+}
+.mainnav {
+  background-color: #42b983;
+  resize: both;
+  overflow: auto;
+  height: 30vh;
+  align-items: center;
+  margin-right: 200px;
+  //animation: 3s menuWidth infinite alternate ease-in-out;
+}
+</style>
+
+<script>
+import vuePriorityNav from "./index";
 export default {
   name: "app",
-  components: {
-    HelloWorld
+  components: { vuePriorityNav },
+  data() {
+    return {
+      navigation: [
+        { label: "Page 1", id: 1, link: "#1" },
+        { label: "Page 2", id: 2, link: "#2" },
+        { label: "Page 3", id: 3, link: "#3" },
+        { label: "Page 4", id: 4, link: "#4" },
+        { label: "Page 5", id: 5, link: "#5" },
+        { label: "Page 6", id: 6, link: "#6" },
+        { label: "Page 7", id: 7, link: "#7" }
+      ]
+    };
   }
 };
 </script>
-
-<style>
-#app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>

@@ -2,12 +2,23 @@
   "name": "vue-prioritynav",
   "version": "0.1.0",
   "private": true,
+  "description": "Prioritynav as a component",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint"
+  },
+  "files": [
+    "src",
+    "dist/*.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "author": {
+    "name": "Gijs Rogé",
+    "email": "rogegijs@gmail.com"
   },
   "dependencies": {
     "core-js": "^3.4.4",
@@ -17,17 +28,18 @@
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-e2e-cypress": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
-    "@vue/cli-plugin-unit-mocha": "^4.1.0",
+    "@vue/cli-plugin-unit-jest": "^4.1.0",
     "@vue/cli-service": "^4.1.0",
     "@vue/eslint-config-prettier": "^5.0.0",
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-eslint": "^10.0.3",
-    "chai": "^4.1.2",
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
     "lint-staged": "^9.5.0",
+    "node-sass": "^4.13.1",
     "prettier": "^1.19.1",
+    "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.10"
   },
   "gitHooks": {
@@ -38,5 +50,10 @@
       "vue-cli-service lint",
       "git add"
     ]
-  }
+  },
+  "main": "dist/vue-prioritynav.cjs.js",
+  "module": "dist/vue-prioritynav.es.js",
+  "unpkg": "dist/vue-prioritynav.js",
+  "jsdelivr": "dist/vue-prioritynav.js",
+  "browser": "dist/vue-prioritynav.es.js"
 }

@@ -1,14 +1,16 @@
 # A vue responsive menu
+
 A renderless Vue component that will auto detect if menu items don't fit and moves them to a separate dropdown. Also known as the Priority+ pattern.
 
 ### Usage
-``` vuejs
-import { ResponsiveMenu } from 'vue-responsive-menu'
 
-Vue.component('ResponsiveMenu', ResponsiveMenu)
+```js
+import { ResponsiveMenu } from "vue-responsive-menu";
+
+Vue.component("ResponsiveMenu", ResponsiveMenu);
 ```
 
-``` vuejs
+```js
 <VueResponsiveMenu #default="{ menuItems, moreMenuItems}" :nav="mainMenu.items">
   <ul>
     <li v-for="item in menuItems" :key="item.id">
@@ -32,6 +34,7 @@ Vue.component('ResponsiveMenu', ResponsiveMenu)
 ```
 
 ### Todo
+
 - [ ] Make a public example site
 - [ ] Create GIF in documentation
 - [ ] Write tests

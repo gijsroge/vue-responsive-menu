@@ -5,7 +5,7 @@ A renderless Vue component that will auto detect if menu items don't fit and mov
 ``` vuejs
 import { ResponsiveMenu } from 'vue-responsive-menu'
 
-Vue.component('FocusTrap', FocusTrap)
+Vue.component('ResponsiveMenu', ResponsiveMenu)
 ```
 
 ``` vuejs

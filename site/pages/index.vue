@@ -10,11 +10,6 @@
 
         <h1 class="font-weight-light m-0">A flexible responsive menu</h1>
 
-        <p>
-          A renderless Vue component that will auto detect if menu items don't
-          fit and moves them to a separate dropdown.  Also known as the
-          Priority+ pattern.
-        </p>
       </header>
     </div>
   </div>

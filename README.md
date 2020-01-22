@@ -8,7 +8,6 @@ import { ResponsiveMenu } from 'vue-responsive-menu'
 Vue.component('FocusTrap', FocusTrap)
 ```
 
-
 ``` vuejs
 <VueResponsiveMenu #default="{ menuItems, moreMenuItems}" :nav="mainMenu.items">
   <ul>
@@ -31,3 +30,10 @@ Vue.component('FocusTrap', FocusTrap)
   </ul>
 </VueResponsiveMenu>
 ```
+
+### Todo
+- [ ] Make a public example site
+- [ ] Create GIF in documentation
+- [ ] Write tests
+- [ ] Setup CI
+- [ ] Add contribution guidelines

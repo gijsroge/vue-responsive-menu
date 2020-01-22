@@ -47,7 +47,6 @@ body {
   height: 30vh;
   align-items: center;
   padding: 5rem;
-  max-width: 800px;
   width: 100%;
   //animation: 3s menuWidth infinite alternate ease-in-out;
 }

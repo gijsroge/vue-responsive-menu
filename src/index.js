@@ -5,11 +5,16 @@ const getWidthIncludingMargin = el => {
     parseFloat(getComputedStyle(el).marginRight)
   );
 };
+
 export default {
   props: {
     maxCharacters: {
       type: Number,
-      default: 200
+      default: 30
+    },
+    label: {
+      type: String,
+      default: "label"
     },
     nav: {
       type: Array,
@@ -26,14 +31,15 @@ export default {
       previousMenuWidth: null,
       menuItems: [],
       moreMenuItems: [],
-      breakpoints: []
+      firstRun: true,
+      moved: false
     };
   },
 
   created() {
     let menuItemsCount = 0;
     this.menuItems = this.nav.filter(navItem => {
-      menuItemsCount += navItem.label.length;
+      menuItemsCount += navItem[this.label].length;
       if (menuItemsCount < this.maxCharacters) {
         return navItem;
       }
@@ -41,7 +47,7 @@ export default {
 
     let moreMenuItemsCount = 0;
     this.moreMenuItems = this.nav.filter(navItem => {
-      moreMenuItemsCount += navItem.label.length;
+      moreMenuItemsCount += navItem[this.label].length;
       if (moreMenuItemsCount >= this.maxCharacters) {
         return navItem;
       }
@@ -49,18 +55,20 @@ export default {
   },
 
   mounted() {
-    let first = true;
     // Register observer
     this.observer = new ResizeObserver(entries => {
       entries.forEach(entry => {
         this.currentMenuWidth = entry.contentRect.width;
         // Only execute if the width of our menu changed
-        if (this.previousMenuWidth !== entry.contentRect.width || first) {
-          if (first) {
+        if (
+          this.previousMenuWidth !== entry.contentRect.width ||
+          this.firstRun
+        ) {
+          if (this.firstRun) {
             this.previousMenuWidth = entry.contentRect.width;
           }
           this.moveItem(entry.contentRect.width);
-          first = false;
+          this.firstRun = false;
         }
         this.previousMenuWidth = entry.contentRect.width;
       });
@@ -72,23 +80,24 @@ export default {
 
   methods: {
     moveItem() {
-      console.table({
-        currentMenuWidth: this.currentMenuWidth,
-        previousMenuWidth: this.previousMenuWidth,
-        isOverflown: this.isOverflown,
-        totalWidthOfChildren: this.totalWidthOfChildren()
-      });
+      console.log(this.currentMenuWidth, this.previousMenuWidth);
       if (this.isOverflown) {
         const lastElement = this.menuItems[this.menuItems.length - 1] || null;
         this.moreMenuItems.unshift(lastElement);
         this.menuItems.pop();
+        this.moved = false;
         this.$nextTick(() => {
           this.moveItem();
         });
-      } else if (this.currentMenuWidth > this.previousMenuWidth) {
+      } else if (
+        (this.currentMenuWidth > this.previousMenuWidth ||
+          this.firstRun ||
+          this.moved) &&
+        this.moreMenuItems[0]
+      ) {
         this.menuItems.push(this.moreMenuItems[0]);
         this.moreMenuItems.shift();
-
+        this.moved = true;
         this.$nextTick(() => {
           this.moveItem();
         });

@@ -9,7 +9,7 @@ export default {
   props: {
     maxCharacters: {
       type: Number,
-      default: 100
+      default: 200
     },
     nav: {
       type: Array,
@@ -22,7 +22,8 @@ export default {
 
   data() {
     return {
-      menuWidth: null,
+      currentMenuWidth: null,
+      previousMenuWidth: null,
       menuItems: [],
       moreMenuItems: [],
       breakpoints: []
@@ -48,17 +49,20 @@ export default {
   },
 
   mounted() {
-    this.menuWidth = this.$el.offsetWidth;
-    this.previousMenuWidth = this.menuWidth;
-    this.moveItem();
-
+    let first = true;
     // Register observer
     this.observer = new ResizeObserver(entries => {
       entries.forEach(entry => {
-        if (this.menuWidth !== entry.contentRect.width) {
+        this.currentMenuWidth = entry.contentRect.width;
+        // Only execute if the width of our menu changed
+        if (this.previousMenuWidth !== entry.contentRect.width || first) {
+          if (first) {
+            this.previousMenuWidth = entry.contentRect.width;
+          }
           this.moveItem(entry.contentRect.width);
+          first = false;
         }
-        this.menuWidth = entry.contentRect.width;
+        this.previousMenuWidth = entry.contentRect.width;
       });
     });
 
@@ -67,37 +71,28 @@ export default {
   },
 
   methods: {
-    moveItem(currentMenuWidth = this.menuWidth) {
-      console.log(currentMenuWidth, this.menuWidth);
-      if (this.isOverflown && currentMenuWidth < this.menuWidth) {
+    moveItem() {
+      console.table({
+        currentMenuWidth: this.currentMenuWidth,
+        previousMenuWidth: this.previousMenuWidth,
+        isOverflown: this.isOverflown,
+        totalWidthOfChildren: this.totalWidthOfChildren()
+      });
+      if (this.isOverflown) {
         const lastElement = this.menuItems[this.menuItems.length - 1] || null;
-        if (lastElement) {
-          this.breakpoints.push(
-            this.menuWidth + getWidthIncludingMargin(this.lastDomMenuItem)
-          );
-          this.moreMenuItems.unshift(lastElement);
-          this.menuItems.pop();
-        }
+        this.moreMenuItems.unshift(lastElement);
+        this.menuItems.pop();
         this.$nextTick(() => {
           this.moveItem();
         });
-      } else if (!this.isOverflown) {
-        this.breakpoints.forEach(breakpoint => {
-          const moreMenuItem = this.moreMenuItems[0] || null;
-          if (this.menuWidth > breakpoint) {
-            this.breakpoints.shift();
-            this.menuItems.push(moreMenuItem);
-            this.moreMenuItems.shift();
+      } else if (this.currentMenuWidth > this.previousMenuWidth) {
+        this.menuItems.push(this.moreMenuItems[0]);
+        this.moreMenuItems.shift();
 
-            this.$nextTick(() => {
-              this.moveItem();
-            });
-          }
+        this.$nextTick(() => {
+          this.moveItem();
         });
       }
-    },
-    getTotalCharacters() {
-      return this.nav.reduce((total, num) => total + num.label.length, 0);
     },
     totalWidthOfChildren() {
       if (this.menuItems.length === 0) {
@@ -118,16 +113,8 @@ export default {
 
   computed: {
     isOverflown() {
-      if (!this.menuWidth) return false;
-      return this.menuWidth < this.totalWidthOfChildren();
-    },
-    lastDomMenuItem() {
-      if (this.moreMenuItems.length === 0) {
-        return this.$el.lastElementChild;
-      }
-
-      const children = Array.from(this.$el.children);
-      return children[children.length - 2];
+      if (!this.currentMenuWidth) return false;
+      return this.currentMenuWidth < this.totalWidthOfChildren();
     }
   }
 };

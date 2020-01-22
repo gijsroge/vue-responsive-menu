@@ -21,7 +21,7 @@ Vue.component("ResponsiveMenu", ResponsiveMenu);
 
     <li v-if="moreMenuItems.length">
       <button type="button">More ↓</button>
-      <ul">
+      <ul>
         <li v-for="item in moreMenuItems" :key="item.id">
           <a :href="`${item.href}`">
             {{ item.name }}

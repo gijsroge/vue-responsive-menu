@@ -1,0 +1,66 @@
+@import '~bootstrap/scss/mixins';
+
+@mixin e-link($color: $primary) {
+  color: rgba($color, 0.8);
+  text-decoration: underline;
+  text-decoration-color: rgba($color, 0.2);
+  text-decoration-thickness: 0.125em;
+  text-underline-position: under;
+
+  @include hover {
+    color: $color;
+    text-decoration-color: rgba($color, 0.4);
+  }
+}
+
+@mixin e-link--secondary() {
+  color: $secondary !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba($secondary, 0.2) !important;
+  text-decoration-thickness: 0.125em !important;
+  text-underline-position: under !important;
+
+  @include hover {
+    text-decoration-color: rgba($secondary, 0.4) !important;
+  }
+}
+
+@mixin e-link--dark() {
+  color: $dark !important;
+  text-decoration: underline !important;
+  text-decoration-color: rgba($dark, 0.15) !important;
+  text-decoration-thickness: 0.125em !important;
+  text-underline-position: under !important;
+
+  @include hover {
+    text-decoration-color: rgba($dark, 0.05) !important;
+    color: rgba($dark, 0.6) !important;
+  }
+}
+
+@mixin container() {
+  @include make-container();
+
+  @include media-breakpoint-down(xxl) {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+}
+
+:root {
+  --container-small: #{$container-small};
+
+  @include media-breakpoint-down(xxl) {
+    --container-small: calc(#{$container-small} - 40px);
+  }
+}
+
+@mixin container-small() {
+  max-width: $container-small - $grid-gutter-width;
+  max-width: calc(var(--container-small) - #{$grid-gutter-width});
+
+  @include media-breakpoint-down(xxl) {
+    max-width: $container-small - 40px;
+    max-width: var(--container-small);
+  }
+}

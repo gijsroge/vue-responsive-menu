@@ -1,0 +1,16 @@
+@supports (display: grid) {
+  .grid {
+    display: grid;
+    margin-left: 0;
+    margin-right: 0;
+
+    > [class^='col'],
+    > [class*=' col'] {
+      width: initial;
+      flex: initial;
+      max-width: initial;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}

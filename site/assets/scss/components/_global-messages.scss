@@ -1,0 +1,13 @@
+.global-messages {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  will-change: transform;
+  box-shadow: 0 0 400px 0 rgba($primary, 0.9) !important;
+  z-index: $zindex-tooltip;
+  max-height: 80vh;
+  overflow-y: auto;
+  max-width: calc(100% - 4rem);
+  transform: translateX(-50%);
+  width: max-content;
+}

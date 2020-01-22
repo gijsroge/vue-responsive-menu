@@ -1,0 +1,42 @@
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+p {
+  @include font-size($font-size-md);
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+strong {
+  font-weight: $font-weight-bold;
+  color: $dark;
+}
+
+.cursor-loading {
+  cursor: wait;
+
+  * {
+    cursor: wait;
+  }
+}
+
+a,
+u {
+  @include e-link();
+}
+
+.nav-link {
+  text-decoration: none;
+}

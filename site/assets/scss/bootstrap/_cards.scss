@@ -1,0 +1,84 @@
+.card--skewed {
+  border: none;
+
+  .card-body {
+    position: relative;
+    z-index: 1;
+    background-color: $light;
+    &:after,
+    &:before {
+      position: absolute;
+      content: '';
+      width: 100%;
+      height: 10px;
+      left: 0;
+      background-size: 100% 100%;
+      color: $light;
+    }
+    &:before {
+      top: -10px;
+      background-image: svg-load('../images/svgs/top-skew.svg', fill = currentColor);
+    }
+    &:after {
+      bottom: -10px;
+      background-image: svg-load('../images/svgs/bottom-skew.svg', fill = currentColor);
+    }
+  }
+}
+
+@each $color, $value in ('primary': $primary, 'light': $light) {
+  .card-bg-#{$color} {
+    .card-body {
+      background-color: $value;
+
+      .e-link {
+        @include e-link(color-yiq($value));
+      }
+
+      &:before {
+        background-image: svg-load('../images/svgs/top-skew.svg', fill = $value);
+      }
+      &:after {
+        background-image: svg-load('../images/svgs/bottom-skew.svg', fill = $value);
+      }
+    }
+  }
+}
+
+.card--skewed-inverted {
+  .card-body {
+    &:after,
+    &:before {
+      transform: scaleX(-1);
+    }
+  }
+}
+
+.card--skewed-bottom-only {
+  .card-body {
+    &:before {
+      display: none;
+    }
+  }
+}
+
+.card--skewed-lg {
+  .card-body {
+    &:after,
+    &:before {
+      @include media-breakpoint-up(lg) {
+        height: 40px;
+      }
+    }
+    &:before {
+      @include media-breakpoint-up(lg) {
+        top: -40px;
+      }
+    }
+    &:after {
+      @include media-breakpoint-up(lg) {
+        bottom: -40px;
+      }
+    }
+  }
+}

@@ -1,0 +1,85 @@
+.c-configurator__canvas {
+  background-color: #d0d0d0;
+  position: relative;
+  transition: opacity ease 150ms;
+
+  &::before {
+    content: '';
+    position: absolute;
+    background-color: white;
+    top: -9px;
+    right: -10px;
+    width: calc(100% + 10px);
+    height: 15px;
+    transform: rotate(1deg);
+    z-index: 1;
+  }
+}
+
+.c-configurator__tooltip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.35rem;
+  background-color: white;
+  box-shadow: 2px 2px 4px rgba(black, 0.35);
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  width: 140px;
+  font-size: 12px;
+
+  label {
+    display: inline-block;
+    font-weight: bold;
+    width: 50px;
+    margin: 0;
+  }
+}
+
+.c-configurator__loading {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  pointer-events: none;
+  background-color: white;
+  padding: 0.75rem;
+  border-radius: 5px;
+  flex-direction: column;
+  transition: opacity ease 300ms;
+
+  svg {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 1rem;
+    animation: rotation ease-in-out 2s forwards infinite;
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.c-configurator__canvas-container {
+  max-width: calc(100% - 400px);
+
+  @media (max-width: 1200px) {
+    max-width: calc(100% - 300px);
+  }
+}
+
+.c-configurator__loading {
+  transition: opacity ease 150ms;
+}

@@ -1,0 +1,11 @@
+.text-underline {
+  @include e-link();
+}
+
+.text-inherit {
+  color: inherit !important;
+}
+
+.text-transform-none {
+  text-transform: none !important;
+}

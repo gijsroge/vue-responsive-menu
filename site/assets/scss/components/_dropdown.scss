@@ -1,0 +1,45 @@
+/*! purgecss start ignore */
+.dropdown-menu {
+  position: static;
+  transform-origin: 50% 0;
+}
+.dropdown-menu-wrapper {
+  position: absolute;
+  perspective: 200px !important;
+}
+.dropdown-enter-active,
+.dropdown-leave-active {
+  transition: all 0.15s ease;
+  .dropdown-menu {
+    will-change: transform, opacity;
+    transition: opacity 0.35s, transform 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+  .popper__arrow {
+    will-change: opacity;
+    transition: opacity 0.35s;
+  }
+}
+.dropdown-leave-active {
+  .dropdown-menu {
+    transition: opacity 0.25s, transform 0.15s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+}
+.dropdown-enter {
+  .popper__arrow {
+    opacity: 0;
+  }
+  .dropdown-menu {
+    transform: scale(0.98) rotate3d(1, 0, 0, -10deg);
+    opacity: 0;
+  }
+}
+.dropdown-leave-to {
+  .popper__arrow {
+    opacity: 0;
+  }
+  .dropdown-menu {
+    transform: scale(1) rotate3d(1, 0, 0, -5deg);
+    opacity: 0;
+  }
+}
+/*! purgecss end ignore */

@@ -1,0 +1,22 @@
+*:focus,
+a:focus,
+button:focus {
+  box-shadow: $input-btn-focus-box-shadow;
+  outline: none;
+}
+
+.js-focus-visible {
+  & *:focus {
+    &:not([data-focus-visible-added]) {
+      box-shadow: none;
+      outline: none;
+    }
+  }
+}
+
+.no-outline {
+  &:focus {
+    box-shadow: none;
+    outline: 0;
+  }
+}

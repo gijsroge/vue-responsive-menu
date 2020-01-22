@@ -1,0 +1,96 @@
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.15s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-in-enter-active,
+.slide-in-leave-active {
+  transition: all 0.4s;
+}
+.slide-in-enter,
+.slide-in-leave-to {
+  transform: translateY(1rem);
+  opacity: 0;
+}
+
+.list-enter-active {
+  @for $i from 2 to 50 {
+    &:nth-child(#{$i}) {
+      transition-delay: $i * 0.02s !important;
+    }
+  }
+}
+.list-enter-active {
+  transition: all 0.4s;
+}
+.list-enter,
+.list-leave-to {
+  opacity: 0;
+  transform: translateY(0.5rem);
+}
+
+// Address grid
+.address-grid-enter-active,
+.address-grid-leave-active {
+  transition: all 0.3s;
+}
+.address-grid-enter,
+.address-grid-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.btn-loader-enter-active,
+.btn-loader-leave-active {
+  transition: all 0.4s;
+}
+.btn-loader-enter {
+  transform: translateY(100%);
+}
+.btn-loader-leave-to {
+  transform: translateY(-100%);
+}
+
+.btn-loader {
+  padding: 0 !important;
+  overflow: hidden;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+
+  &.btn-xs {
+    .btn-loader-inner {
+      height: 2.25rem;
+    }
+  }
+}
+
+.btn-loader-inner {
+  position: relative;
+  height: 3rem;
+  > * {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+// Inspiration bar
+.inspiration-bar-enter-active,
+.inspiration-bar-leave-active {
+  transition: all 0.2s;
+}
+.inspiration-bar-enter,
+.inspiration-bar-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}

@@ -1,0 +1,11 @@
+.snackbar--button {
+  height: auto !important;
+  line-height: 1;
+
+  &:before {
+    display: none !important;
+  }
+}
+.snackbar {
+  font-weight: $font-weight-normal;
+}

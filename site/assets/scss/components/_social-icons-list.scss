@@ -1,0 +1,39 @@
+.circle-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: $gray-600;
+  padding: 0.5rem;
+  position: relative;
+  transition: $transition-base;
+  background-color: transparent;
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
+
+  &:after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background-color: $light;
+    transition: $transition-base;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+  }
+
+  &:focus,
+  &:hover {
+    color: white;
+    background-color: transparent;
+    &:after {
+      background-color: darken($light, 10%);
+      transform: scale(0.9);
+    }
+    svg {
+      transform: scale(1.1);
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.icon-label {
+  display: flex;
+  align-items: baseline;
+
+  > svg,
+  > img {
+    transform: translateY(calc(50% - 0.4em));
+  }
+}

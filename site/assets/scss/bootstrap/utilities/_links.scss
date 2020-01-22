@@ -1,0 +1,15 @@
+.e-link {
+  @include e-link();
+}
+
+.e-link--secondary {
+  @include e-link--secondary();
+}
+
+.e-link--dark {
+  @include e-link--dark();
+}
+
+.e-link--white {
+  @include e-link($white);
+}

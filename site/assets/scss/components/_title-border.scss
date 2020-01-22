@@ -1,0 +1,18 @@
+.title-border {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+
+  > span {
+    margin: 0 0.5em;
+  }
+
+  &:after,
+  &:before {
+    content: '';
+    height: 1px;
+    background-color: $border-color;
+    flex: 1;
+  }
+}

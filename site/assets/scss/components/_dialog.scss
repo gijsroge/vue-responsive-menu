@@ -1,0 +1,135 @@
+/**
+ * When the native `<dialog>` element is supported, the overlay is implied and
+ * can be styled with `::backdrop`, which means the DOM one should be removed.
+ *
+ * The `data-a11y-dialog-native` attribute is set by the script when the
+ * `<dialog>` element is properly supported.
+ *
+ * Feel free to replace `:first-child` with the overlay selector you prefer.
+ */
+[data-a11y-dialog-native] > :first-child {
+  display: none;
+}
+
+/**
+ * When the `<dialog>` element is not supported, its default display is `inline`
+ * which can cause layout issues. This makes sure the dialog is correctly
+ * displayed when open.
+ */
+dialog[open] {
+  display: block;
+}
+
+/**
+ * When the native `<dialog>` element is not supported, the script toggles the
+ * `aria-hidden` attribute on the container. If `aria-hidden` is set to `true`,
+ * the container should be hidden entirely.
+ *
+ * Feel free to replace `.dialog-container` with the container selector you
+ * prefer.
+ */
+.c-dialog[aria-hidden='true'] {
+  &:not([data-a11y-dialog-native]) {
+    display: none !important;
+  }
+}
+
+@keyframes dialog-enter {
+  to {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-backdrop-enter {
+  to {
+    opacity: 1;
+  }
+}
+
+.c-dialog--default {
+  &:not([data-a11y-dialog-native]) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: $zindex-modal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .c-dialog-overlay {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      background-color: rgba($gray-200, 0.9);
+    }
+
+    .c-dialog-element {
+      opacity: 0;
+      transform: translateY(-3rem);
+
+      z-index: 5;
+      background-color: white;
+      animation: dialog-enter 0.3s forwards;
+      max-height: 95vh;
+      overflow-y: auto;
+      margin-top: 5rem;
+      margin-bottom: 5rem;
+    }
+  }
+
+  .c-dialog-element {
+    border: none;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    @include media-breakpoint-up(sm) {
+      max-width: 50rem !important;
+    }
+
+    .dialog-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 2;
+    }
+
+    &::backdrop {
+      background-color: rgba($gray-200, 0.9);
+      opacity: 0;
+      animation: dialog-backdrop-enter 0.15s forwards;
+    }
+
+    opacity: 0;
+    transform: translateY(1rem) scale(0.97);
+    transform-origin: top center;
+    animation: dialog-enter 0.15s forwards;
+  }
+}
+
+.c-dialog--minimal {
+  .dialog-close {
+    color: $white;
+    position: absolute;
+    right: 0;
+    top: -3rem;
+  }
+  .c-dialog-element {
+    border: none;
+    padding: 0;
+    max-width: calc(100% - 4rem) !important;
+    background-color: transparent;
+
+    .c-dialog-element-inner {
+      background-color: white;
+    }
+    &::backdrop {
+      background-color: rgba($dark, 0.9);
+      opacity: 0;
+      animation: dialog-backdrop-enter 0.15s forwards;
+    }
+  }
+}

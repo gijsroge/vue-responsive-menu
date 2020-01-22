@@ -1,0 +1,46 @@
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+    .w#{$infix}-2 {
+      max-width: 2rem;
+    }
+    .w#{$infix}-3 {
+      max-width: 3rem;
+    }
+    .w#{$infix}-5 {
+      max-width: 5rem;
+    }
+    .w#{$infix}-60 {
+      max-width: 60rem;
+    }
+    .w#{$infix}-medium {
+      max-width: 30rem;
+    }
+    .w#{$infix}-max-content {
+      max-width: max-content;
+    }
+
+    .w#{$infix}-fullwidth {
+      width: 100% !important;
+    }
+
+    .w#{$infix}-initial {
+      width: initial !important;
+    }
+  }
+}
+
+.w-mobile-breakout-viewport {
+  @include media-breakpoint-down(xs) {
+    width: 100vw !important;
+    position: relative !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+  }
+}
+
+.mw-min-content {
+  max-width: min-content !important;
+}

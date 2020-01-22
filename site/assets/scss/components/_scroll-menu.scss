@@ -1,0 +1,15 @@
+.scroll-menu {
+  overflow-x: auto;
+  white-space: nowrap;
+  flex-wrap: nowrap;
+}
+.scroll-menu--center {
+  > * {
+    &:first-child {
+      margin-left: auto;
+    }
+    &:last-child {
+      margin-right: auto;
+    }
+  }
+}

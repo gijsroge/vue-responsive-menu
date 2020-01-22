@@ -1,63 +1,103 @@
-
 export default {
   mode: 'universal',
   /*
-  ** Headers of the page
-  */
+   ** Headers of the page
+   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Vue Responsive Menu | auto hide excessive menu items',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      {
+        hid: 'description',
+        name: 'description',
+        content: process.env.npm_package_description || ''
+      },
+      { name: 'theme-color', content: '#ff2940' }
     ],
     link: [
+      {
+        rel: 'stylesheet',
+        href:
+          'https://fonts.googleapis.com/css?family=Dosis:700|Roboto:300,400,700&display=swap'
+      },
+      {
+        rel: 'apple-touch-icon',
+        href: '/favicons/apple-touch-icon-152x152.png'
+      },
+      {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: '/favicons/apple-touch-icon.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '32x32',
+        href: '/favicons/favicon-32x32.png'
+      },
+      {
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: '/favicons/favicon-16x16.png'
+      },
+      {
+        rel: 'mask-icon',
+        href: '/favicons/safari-pinned-tab.svg',
+        color: '#ff2940'
+      },
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
   },
   /*
-  ** Customize the progress-bar color
-  */
+   ** Customize the progress-bar color
+   */
   loading: { color: '#fff' },
   /*
-  ** Global CSS
-  */
-  css: [
-  ],
-  /*
-  ** Plugins to load before mounting the App
-  */
-  plugins: [
-  ],
-  /*
-  ** Nuxt.js dev-modules
-  */
-  buildModules: [
-  ],
-  /*
-  ** Nuxt.js modules
-  */
-  modules: [
-    // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
-    '@nuxtjs/pwa',
-    // Doc: https://github.com/nuxt-community/dotenv-module
-    '@nuxtjs/dotenv',
-  ],
-  /*
-  ** Axios module configuration
-  ** See https://axios.nuxtjs.org/options
-  */
-  axios: {
+   ** Global CSS
+   */
+  css: ['@/assets/scss/global.scss'],
+  styleResources: {
+    scss: [
+      '@/assets/scss/private/variables.scss',
+      '@/assets/scss/private/mixins.scss'
+    ]
+  },
+  svgSprite: {
+    input: '~/assets/images/svgs/icons'
   },
   /*
-  ** Build configuration
-  */
+   ** Plugins to load before mounting the App
+   */
+  plugins: [],
+  /*
+   ** Nuxt.js dev-modules
+   */
+  buildModules: [],
+  /*
+   ** Nuxt.js modules
+   */
+  modules: [
+    '@nuxtjs/svg-sprite',
+    // Doc: https://axios.nuxtjs.org/usage
+    '@nuxtjs/pwa',
+    // Doc: https://github.com/nuxt-community/dotenv-module
+    '@nuxtjs/dotenv'
+  ],
+  /*
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
+  axios: {},
+  /*
+   ** Build configuration
+   */
   build: {
-    /*
-    ** You can extend webpack config here
-    */
-    extend (config, ctx) {
+    postcss: {
+      plugins: {
+        'postcss-inline-svg': {}
+      }
     }
   }
 }

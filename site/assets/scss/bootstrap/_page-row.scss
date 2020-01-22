@@ -1,0 +1,10 @@
+.page-row-lg {
+  margin-bottom: 2rem;
+  @include media-breakpoint-up(md) {
+    margin-bottom: 3rem;
+  }
+}
+
+.page-row-xl {
+  margin-bottom: 5rem;
+}

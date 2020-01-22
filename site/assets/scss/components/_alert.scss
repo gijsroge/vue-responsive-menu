@@ -1,0 +1,14 @@
+.alert {
+  background-color: $white;
+}
+
+@each $color, $value in $theme-colors {
+  .alert-#{$color} {
+    border-color: $value;
+    color: $body-color;
+  }
+}
+
+.alert-success {
+  border-color: $green-acid;
+}

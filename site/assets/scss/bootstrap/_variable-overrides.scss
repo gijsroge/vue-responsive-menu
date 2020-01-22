@@ -1,0 +1,167 @@
+$colors: map-merge(
+  (
+    'dark': $dark,
+    'gray': $gray-500
+  ),
+  $colors
+);
+
+$theme-colors: map-merge(
+  (
+    'primary': $primary,
+    'secondary': $secondary,
+    'white': $white,
+    'yellow': $yellow,
+    'green': $green,
+    'green-acid': $green-acid,
+    'dark': $dark,
+    'body': $body-color,
+    'gray': $gray,
+    'dark-gray': $dark-gray
+  ),
+  $theme-colors
+);
+
+// Export so we can import in our JavaScript.
+:export {
+  primary: $primary;
+  secondary: $secondary;
+  white: $white;
+  success: $success;
+  error: $danger;
+}
+
+$grid-breakpoints: (
+  xxs: 0,
+  xs: 340px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+$container-small: 962px;
+
+// Export so we can import in our JavaScript.
+:export {
+  xxs: map-get($grid-breakpoints, xxs);
+  xs: map-get($grid-breakpoints, xs);
+  sm: map-get($grid-breakpoints, sm);
+  md: map-get($grid-breakpoints, md);
+  lg: map-get($grid-breakpoints, lg);
+}
+
+$container-max-widths: (
+  xs: 540px,
+  sm: 720px,
+  md: 960px,
+);
+
+@include _assert-ascending($container-max-widths, '$container-max-widths');
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns: 12;
+$grid-gutter-width: 20px;
+
+// Spacing
+//
+// Control the default styling of most Bootstrap elements by modifying these
+// variables. Mostly focused on spacing.
+// You can add more entries to the $spacers map, should you need more variation.
+
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: (
+    $spacer * 0.25
+  ),
+  2: (
+    $spacer * 0.5
+  ),
+  3: $spacer * 1,
+  4: (
+    $spacer * 2
+  ),
+  5: (
+    $spacer * 2.5
+  ),
+  6: (
+    $spacer * 4
+  ),
+  7: (
+    $spacer * 6
+  ),
+  8: (
+    $spacer * 9
+  )
+);
+
+$enable-shadows: false;
+
+$component-active-color: $white;
+$component-active-bg: theme-color('primary');
+
+// Shadows
+$box-shadow-sm: 0 0.125rem 0.25rem rgba($black, 0.075);
+$box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1), 0 10px 10px rgba(0, 0, 0, 0.07);
+$box-shadow-lg: 0 50px 100px -20px rgba(50, 50, 93, 0.25),
+  0 30px 60px -30px rgba(0, 0, 0, 0.3), 0 -18px 60px -10px rgba(0, 0, 0, 0.025);
+
+// Border radius
+$border-radius: 0.25rem;
+$border-radius-lg: 0.3rem;
+$border-radius-sm: 0.2rem;
+
+// Border
+$border-width: 1px;
+$border-color: $gray-300;
+
+//transitions
+$transition-base: all 0.15s;
+
+// Font
+$font-family-sans-serif: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
+  'Liberation Mono', 'Courier New', monospace;
+$font-family-base: $font-family-sans-serif;
+$font-size-base: 1rem;
+$font-size-xxl: $font-size-base * 3.75;
+$font-size-xl: $font-size-base * 2.5;
+$font-size-lg: $font-size-base * 1.3125;
+$font-size-md: $font-size-base * 1.125;
+$font-size-sm: $font-size-base * 0.875;
+$font-size-xs: $font-size-base * 0.75;
+$font-size-xxs: $font-size-base * 0.5625;
+$enable-responsive-font-sizes: true;
+$font-weight-lighter: lighter;
+$font-weight-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+$font-weight-black: 900;
+$font-weight-bolder: bolder;
+$font-weight-base: $font-weight-light;
+$line-height-base: 1.875;
+$line-height-lg: 1.875;
+$line-height-sm: 1.5;
+
+$h1-font-size: $font-size-base * 3.75;
+$h2-font-size: $font-size-base * 2.5;
+$h3-font-size: $font-size-base * 1.9375;
+$h4-font-size: $font-size-base * 1.5;
+$h5-font-size: $font-size-base;
+$h6-font-size: $font-size-base;
+
+$headings-margin-bottom: 1rem;
+$headings-font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+$headings-font-weight: $font-weight-black;
+$headings-line-height: 1;
+$headings-color: $red;

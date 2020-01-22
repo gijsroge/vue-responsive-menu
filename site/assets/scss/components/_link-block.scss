@@ -1,0 +1,9 @@
+.link-block {
+  color: inherit !important;
+  text-decoration: none;
+
+  &:hover, &:focus{
+    color: inherit !important;
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,59 @@
+.c-shape-picker {
+  flex-wrap: wrap;
+  width: calc(100% + 0.5rem);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.c-shape-picker--dark {
+  .c-shape-picker__item {
+    background-color: #d0d0d0;
+  }
+}
+
+.c-shape-picker__item {
+  background-color: white;
+  width: calc(16.66667% - 0.5rem);
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.2rem;
+  border: 3px solid transparent;
+  cursor: pointer;
+  height: 51px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (max-width: 1200px) {
+    width: calc(20% - 0.5rem);
+  }
+
+  img {
+    margin: auto;
+    max-height: 100%;
+  }
+
+  &:hover,
+  &.is-active {
+    border-color: $primary;
+  }
+
+  &.clear {
+    position: relative;
+    overflow: hidden;
+    border: none;
+    background-color: white;
+
+    &::before {
+      content: '';
+      background: red;
+      height: 3px;
+      width: 160%;
+      transform: rotate(-45deg);
+      transform-origin: left bottom;
+      position: absolute;
+      top: 47px;
+      left: -1px;
+    }
+  }
+}

@@ -1,0 +1,122 @@
+.btn {
+  border-radius: $btn-border-radius-lg;
+  text-transform: uppercase;
+  font-family: $headings-font-family;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-normal {
+  font-weight: $font-weight-normal;
+  text-transform: none;
+  font-family: $font-family-base;
+}
+
+.btn-shadow {
+  box-shadow: 6px 6px 0 0 $secondary;
+
+  &:focus,
+  &:hover {
+    box-shadow: 8px 8px 0 0 $secondary;
+  }
+
+  &:active {
+    box-shadow: 8px 8px 0 0 $secondary !important;
+  }
+}
+
+.btn-secondary {
+  &.btn-shadow {
+    box-shadow: 6px 6px 0 0 rgba(darken($secondary, 40%), 0.5);
+
+    &:focus,
+    &:hover {
+      box-shadow: 8px 8px 0 0 rgba(darken($secondary, 50%), 0.7);
+    }
+
+    &:active {
+      box-shadow: 8px 8px 0 0 rgba(darken($secondary, 40%), 0.5) !important;
+    }
+  }
+}
+
+@media (pointer: coarse) {
+  .btn-sm {
+    min-height: 2.5rem !important;
+    min-width: 2.5rem !important;
+  }
+}
+
+.btn-icon-only {
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn-icon {
+  display: inline-flex;
+  text-align: left;
+  align-items: baseline;
+
+  > svg,
+  > .icon,
+  > img {
+    flex-shrink: 0;
+    transform: translateY(calc(50% - 0.4em));
+  }
+}
+
+.btn-add-to-cart {
+  @include button-outline-variant($dark);
+  border-color: $gray-400;
+}
+
+.btn-xs {
+  @include font-size($font-size-xs);
+}
+
+.btn-reset {
+  border: none;
+  outline: none;
+  background: none;
+  font-family: $font-family-base;
+  text-transform: none;
+  font-weight: $font-weight-normal;
+}
+
+.btn-primary {
+  &.disabled,
+  &:disabled {
+    background-color: $gray-600;
+    border-color: $gray-600;
+  }
+}
+
+.btn-outline-dark {
+  background-color: $white;
+
+  &.btn-shadow {
+    box-shadow: 6px 6px 0 0 $light;
+
+    &:focus,
+    &:hover {
+      box-shadow: 8px 8px 0 0 $light;
+    }
+
+    &:active {
+      box-shadow: 8px 8px 0 0 $light !important;
+    }
+  }
+
+  &:hover {
+    color: $dark;
+    background-color: $gray-300;
+  }
+}
+
+.btn-link{
+  &:focus{
+    box-shadow: $input-btn-focus-box-shadow;
+  }
+}

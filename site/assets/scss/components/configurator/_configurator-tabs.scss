@@ -1,0 +1,17 @@
+.c-tabs__control {
+  padding: 0.25rem 1rem;
+  text-transform: none;
+  font-size: 0.9rem;
+
+  &.is-active {
+    padding: 0.6rem 1rem;
+    background-color: white;
+    color: $primary;
+    font-size: 1rem;
+  }
+}
+
+.c-tab {
+  padding: 1rem;
+  background-color: white;
+}

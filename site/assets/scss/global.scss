@@ -1,0 +1,14 @@
+@import 'private/variables';
+@import 'private/mixins';
+@import 'bootstrap/bootstrap';
+@import './base/base';
+@import './components/components';
+@import './helpers/helpers';
+
+body {
+  @media all and (display-mode: standalone) {
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+  }
+}

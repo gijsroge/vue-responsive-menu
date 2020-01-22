@@ -1,0 +1,38 @@
+// Colors
+$body-color: #3e3f42;
+
+// Colors
+$blue: #24abee;
+$red: #FF2940;
+$orange: #FF5B15;
+$yellow: #ffcb16;
+$green: #55c12d;
+$green-acid: #33d450;
+$green-secondary: #9dc13c;
+$cyan: #17a2b8;
+$warning: $orange;
+$success: $green;
+
+$primary: $red;
+$secondary: $orange;
+$dark: #1b1b1c;
+$white: white;
+$black: #000;
+
+$gray-100: #f8f9fa;
+$gray-200: #f4f4f4;
+$gray-300: #eaeaea;
+$gray-400: #ced4da;
+$gray-500: #bcbabd;
+$gray-600: #787d84;
+$gray-700: #495057;
+$gray-800: #343a40;
+$gray-900: #212529;
+$gray: $gray-500;
+$dark-gray: $gray-600;
+
+$light: $gray-200;
+
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+@import '~assets/scss/bootstrap/variable-overrides';

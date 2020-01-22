@@ -80,7 +80,6 @@ export default {
 
   methods: {
     moveItem() {
-      console.log(this.currentMenuWidth, this.previousMenuWidth);
       if (this.isOverflown) {
         const lastElement = this.menuItems[this.menuItems.length - 1] || null;
         this.moreMenuItems.unshift(lastElement);

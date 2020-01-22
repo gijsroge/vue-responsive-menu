@@ -53,7 +53,7 @@ body {
 </style>
 
 <script>
-import VueResponsiveMenu from "./index";
+import VueResponsiveMenu from "../src";
 export default {
   name: "app",
   components: { VueResponsiveMenu },

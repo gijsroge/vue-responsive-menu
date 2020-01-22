@@ -1,34 +1,33 @@
-# bla
+# A vue responsive menu
+A renderless Vue component that will auto detect if menu items don't fit and moves them to a separate dropdown. Also known as the Priority+ pattern.
 
-## Project setup
-```
-yarn install
-```
+### Usage
+``` vuejs
+import { ResponsiveMenu } from 'vue-responsive-menu'
 
-### Compiles and hot-reloads for development
-```
-yarn serve
+Vue.component('FocusTrap', FocusTrap)
 ```
 
-### Compiles and minifies for production
-```
-yarn build
-```
 
-### Run your unit tests
-```
-yarn test:unit
-```
+``` vuejs
+<VueResponsiveMenu #default="{ menuItems, moreMenuItems}" :nav="mainMenu.items">
+  <ul>
+    <li v-for="item in menuItems" :key="item.id">
+      <a :href="`${item.href}`">
+        {{ item.name }}
+      </a>
+    </li>
 
-### Run your end-to-end tests
+    <li v-if="moreMenuItems.length">
+      <button type="button">More ↓</button>
+      <ul">
+        <li v-for="item in moreMenuItems" :key="item.id">
+          <a :href="`${item.href}`">
+            {{ item.name }}
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</VueResponsiveMenu>
 ```
-yarn test:e2e
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

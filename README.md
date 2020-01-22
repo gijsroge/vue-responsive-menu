@@ -10,7 +10,7 @@ import { ResponsiveMenu } from "vue-responsive-menu";
 Vue.component("ResponsiveMenu", ResponsiveMenu);
 ```
 
-```js
+```html
 <VueResponsiveMenu #default="{ menuItems, moreMenuItems}" :nav="mainMenu.items">
   <ul>
     <li v-for="item in menuItems" :key="item.id">

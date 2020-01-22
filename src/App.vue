@@ -1,5 +1,5 @@
 <template>
-  <vuePriorityNav #default="{ menuItems, moreMenuItems}" :nav="navigation">
+  <VueResponsiveMenu #default="{ menuItems, moreMenuItems}" :nav="navigation">
     <ul class="mainnav list-unstyled d-flex flex-wrap">
       <li
         class="p-2 px-4 bg-light"
@@ -17,7 +17,7 @@
         </ul>
       </li>
     </ul>
-  </vuePriorityNav>
+  </VueResponsiveMenu>
 </template>
 
 <style lang="scss">
@@ -53,10 +53,10 @@ body {
 </style>
 
 <script>
-import vuePriorityNav from "./index";
+import VueResponsiveMenu from "./index";
 export default {
   name: "app",
-  components: { vuePriorityNav },
+  components: { VueResponsiveMenu },
   data() {
     return {
       menuWidth: 0,

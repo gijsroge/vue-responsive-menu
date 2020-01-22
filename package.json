@@ -1,8 +1,12 @@
 {
-  "name": "vue-prioritynav",
+  "name": "vue-responsive-menu",
   "version": "0.1.0",
   "private": true,
-  "description": "Prioritynav as a component",
+  "description": "A renderless Vue component that will auto detect if menu items don't fit and moves them to a separate dropdown. Also known as the Priority+ pattern.",
+  "author": {
+    "name": "Gijs Rogé",
+    "email": "rogegijs@gmail.com"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -17,10 +21,6 @@
     "LICENSE",
     "README.md"
   ],
-  "author": {
-    "name": "Gijs Rogé",
-    "email": "rogegijs@gmail.com"
-  },
   "dependencies": {
     "core-js": "^3.4.4",
     "vue": "^2.6.10"
@@ -52,9 +52,9 @@
       "git add"
     ]
   },
-  "main": "dist/vue-prioritynav.cjs.js",
-  "module": "dist/vue-prioritynav.es.js",
-  "unpkg": "dist/vue-prioritynav.js",
-  "jsdelivr": "dist/vue-prioritynav.js",
-  "browser": "dist/vue-prioritynav.es.js"
+  "main": "dist/vue-responsive-menu.cjs.js",
+  "module": "dist/vue-responsive-menu.es.js",
+  "unpkg": "dist/vue-responsive-menu.js",
+  "jsdelivr": "dist/vue-responsive-menu.js",
+  "browser": "dist/vue-responsive-menu.es.js"
 }

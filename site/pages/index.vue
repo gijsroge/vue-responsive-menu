@@ -1,37 +1,63 @@
 <template>
   <div class="root d-flex">
-    <div class="content flex-grow-1 pt-8">
-      <header class="container">
+    <div class="flex-grow-1">
+      <div class="grid flex-grow-1 p-3 p-md-6 p-lg-8">
         <svg-icon
-          class="mr-7"
+          class="logo"
           name="logo"
           style="width: 3.5rem; height: 3.5rem"
         />
 
         <h1 class="font-weight-light m-0">A flexible responsive menu</h1>
 
-        <p>
-          A renderless Vue component that will auto detect if menu items don't
-          fit and moves them to a separate dropdown. Also known as the
-          Priority+ pattern.
-        </p>
+        <div class="description py-5">
+          <div class="d-flex align-items-center mb-5">
+            <a
+              class="btn btn-sm btn-secondary btn-twitter mr-3"
+              href="https://twitter.com/intent/tweet?text=Vue responsive menu — Auto detect if menu items don't fit and moves them to a separate dropdown.%0avia @GijsRoge%0a%0a👉 vue-responsive-menu.netlify.com"
+            >
+              <svg-icon
+                class="mr-1"
+                name="twitter"
+                style="width: 1em; height: 1em"
+              />
+              Tweet
+            </a>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=gijsroge&repo=vue-responsive-menu&type=star&count=true"
+              frameborder="0"
+              scrolling="0"
+              width="170px"
+              height="20px"
+            ></iframe>
+          </div>
+          <p class="font-size-lg">
+            A renderless Vue component that will auto detect if menu items don't
+            fit and moves them to a separate dropdown. Also known as the
+            Priority+ pattern.
+          </p>
+        </div>
 
-        <hr class="my-7" />
+        <div class="content"></div>
+      </div>
 
+      <div class="example example--1 bg-primary py-5">
         <VueResponsiveMenu
           #default="{ menuItems, moreMenuItems}"
           :nav="navigation"
         >
-          <ul class="mainnav bg-light list-unstyled d-flex flex-wrap">
+          <ul
+            class="demo-nav demo-nav--1 list-unstyled d-flex flex-wrap font-weight-bold justify-content-center"
+          >
             <li
-              class="p-2 px-4 bg-light"
+              class="p-2 px-4 text-dark"
               v-for="menuItem in menuItems"
               :key="menuItem.id"
             >
               {{ menuItem.label }}
             </li>
 
-            <li class="p-2 px-4 bg-light" v-if="moreMenuItems.length > 0">
+            <li class="p-2 px-4" v-if="moreMenuItems.length > 0">
               {{ menuItems.length === 0 ? '☰' : 'more ↓' }}
               <ul class="list-unstyled p-3 position-absolute bg-light">
                 <li
@@ -44,25 +70,25 @@
             </li>
           </ul>
         </VueResponsiveMenu>
-      </header>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import VueResponsiveMenu from '../../src/index'
+
 export default {
   components: { VueResponsiveMenu },
   data() {
     return {
       navigation: [
-        { label: 'Page 1', id: 1, link: '#1' },
-        { label: 'Page 2', id: 2, link: '#2' },
-        { label: 'Page 3', id: 3, link: '#3' },
-        { label: 'Page 4', id: 4, link: '#4' },
-        { label: 'Page 5', id: 5, link: '#5' },
-        { label: 'Page 6', id: 6, link: '#6' },
-        { label: 'Page 7', id: 7, link: '#7' }
+        { label: 'This', id: 1, link: '#1' },
+        { label: 'is an', id: 2, link: '#2' },
+        { label: 'example', id: 3, link: '#3' },
+        { label: 'navigation', id: 4, link: '#4' },
+        { label: 'with many', id: 5, link: '#5' },
+        { label: 'items', id: 6, link: '#6' }
       ]
     }
   }
@@ -70,8 +96,33 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.header {
+.logo {
+  justify-self: center;
+}
+.grid {
   display: grid;
+  grid-template-areas:
+    'logo header'
+    'description description'
+    'content content';
+  align-items: center;
+  grid-column-gap: 3rem;
+
+  @include media-breakpoint-up(md) {
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      'logo header'
+      '....... description '
+      '....... content';
+  }
+}
+
+.description {
+  grid-area: description;
+}
+.content {
+  grid-area: content;
 }
 
 @keyframes menuWidth {
@@ -82,19 +133,6 @@ export default {
     width: 20%;
   }
 }
-.mainnav {
-  resize: both;
-  overflow: auto;
-  align-items: center;
-  animation: 3s menuWidth infinite alternate ease-in-out;
-}
-.root {
-  height: 100%;
-  &:before {
-    content: '';
-    width: 150px;
-    min-height: 100vh;
-    background: linear-gradient(180deg, #ff2940 0%, #ff5b15 100%);
-  }
+.demo-nav {
 }
 </style>

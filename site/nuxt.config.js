@@ -19,7 +19,7 @@ export default {
       {
         rel: 'stylesheet',
         href:
-          'https://fonts.googleapis.com/css?family=Dosis:700|Roboto:300,400,700&display=swap'
+          'https://fonts.googleapis.com/css?family=Dosis:700|Lato:300,400,700&display=swap'
       },
       {
         rel: 'apple-touch-icon',
@@ -79,6 +79,7 @@ export default {
    ** Nuxt.js modules
    */
   modules: [
+    '@nuxtjs/style-resources',
     '@nuxtjs/svg-sprite',
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/pwa',

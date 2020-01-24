@@ -3,8 +3,8 @@ $body-color: #3e3f42;
 
 // Colors
 $blue: #24abee;
-$red: #FF2940;
-$orange: #FF5B15;
+$red: #ff2940;
+$orange: #ff5b15;
 $yellow: #ffcb16;
 $green: #55c12d;
 $green-acid: #33d450;
@@ -12,12 +12,13 @@ $green-secondary: #9dc13c;
 $cyan: #17a2b8;
 $warning: $orange;
 $success: $green;
+$twitter: #1da1f2;
 
 $primary: $red;
 $secondary: $orange;
 $dark: #1b1b1c;
 $white: white;
-$black: #000;
+$black: #0f0f10;
 
 $gray-100: #f8f9fa;
 $gray-200: #f4f4f4;
@@ -33,6 +34,11 @@ $dark-gray: $gray-600;
 
 $light: $gray-200;
 
+$body-bg: $black;
+$body-color: #a4a4a4;
+
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~assets/scss/bootstrap/variable-overrides';
+
+@debug $btn-padding-y-sm;

@@ -14,12 +14,14 @@
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/dotenv": "^1.4.0",
     "@nuxtjs/pwa": "^3.0.0-0",
+    "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/svg-sprite": "^0.4.7",
     "bootstrap": "^4.4.1",
     "node-sass": "^4.13.1",
     "nuxt": "^2.0.0",
     "postcss-inline-svg": "^4.1.0",
-    "sass-loader": "^8.0.2"
+    "sass-loader": "^8.0.2",
+    "vue-github-button": "^1.1.2"
   },
   "devDependencies": {
     "prettier": "^1.16.4"

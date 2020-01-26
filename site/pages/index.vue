@@ -8,9 +8,18 @@
           style="width: 3.5rem; height: 3.5rem"
         />
 
-        <h1 class="font-weight-light m-0">A flexible responsive menu</h1>
+        <div>
+          <h1 class="font-weight-light m-0">
+            A flexible responsive menu
+          </h1>
+          <span
+            class="font-size-sm font-weight-bold d-inline-block position-absolute"
+            style="color: #41b883"
+            >for Vue.js</span
+          >
+        </div>
 
-        <div class="description py-5">
+        <div class="description py-5 mt-4">
           <div class="d-flex align-items-center mb-5">
             <a
               class="btn btn-sm btn-secondary btn-twitter mr-3"
@@ -39,6 +48,7 @@
         </div>
 
         <div class="content">
+          <GlobalEvents @keydown.esc="closeAll()" />
           <h2>Examples</h2>
           <div class="example example--1 py-5">
             <VueResponsiveMenu
@@ -49,22 +59,45 @@
                 class="demo-nav demo-nav--1 list-unstyled d-flex flex-wrap font-weight-bold"
               >
                 <li class="" v-for="menuItem in menuItems" :key="menuItem.id">
-                  <a href="#" class="p-2 px-4 border d-block">{{ menuItem.label }}</a>
+                  <a href="#" class="p-2 px-4 border d-block">{{
+                    menuItem.label
+                  }}</a>
                 </li>
 
-                <li
-                  class="p-2 px-4 border bg-dark-gray"
-                  v-if="moreMenuItems.length > 0"
-                >
-                  {{ menuItems.length === 0 ? '☰' : 'more ↓' }}
-                  <ul class="list-unstyled p-3 position-absolute bg-light">
-                    <li
-                      v-for="moreMenuItem in moreMenuItems"
-                      :key="moreMenuItem.id"
+                <li class="" v-if="moreMenuItems.length > 0">
+                  <Popper
+                    transition="dropdown"
+                    enter-active-class="dropdown-enter-active"
+                    leave-active-class="dropdown-leave-active"
+                    ref="userDropdown"
+                    trigger="clickToToggle"
+                    :append-to-body="true"
+                    :options="{ placement: 'bottom' }"
+                  >
+                    <div class="popper dropdown-menu-wrapper">
+                      <FocusLock>
+                        <div class="dropdown-menu m-0 shadow d-block">
+                          <ul class="list-unstyled">
+                            <a
+                              class="dropdown-item"
+                              href="#"
+                              v-for="moreMenuItem in moreMenuItems"
+                              :key="moreMenuItem.id"
+                            >
+                              {{ moreMenuItem.label }} (more)
+                            </a>
+                          </ul>
+                        </div>
+                      </FocusLock>
+                    </div>
+                    <button
+                      type="button"
+                      slot="reference"
+                      class="btn w-100 p-2 px-4 border bg-dark-gray rounded-0"
                     >
-                      {{ moreMenuItem.label }} (more)
-                    </li>
-                  </ul>
+                      {{ menuItems.length === 0 ? '☰' : 'more ↓' }}
+                    </button>
+                  </Popper>
                 </li>
               </ul>
             </VueResponsiveMenu>
@@ -79,16 +112,30 @@
 import VueResponsiveMenu from '../../src/index'
 
 export default {
-  components: { VueResponsiveMenu },
+  components: {
+    VueResponsiveMenu,
+    FocusLock: () => import('vue-focus-lock'),
+    GlobalEvents: () => import('vue-global-events'),
+    Popper: () => import('vue-popperjs')
+  },
+  methods: {
+    closeAll() {
+      this.moreExample1Open = false
+    }
+  },
   data() {
     return {
+      moreExample1Open: false,
       navigation: [
         { label: 'This', id: 1, link: '#1' },
         { label: 'is an', id: 2, link: '#2' },
         { label: 'example', id: 3, link: '#3' },
         { label: 'navigation', id: 4, link: '#4' },
         { label: 'with many', id: 5, link: '#5' },
-        { label: 'items', id: 6, link: '#6' }
+        { label: 'many', id: 6, link: '#5' },
+        { label: 'many', id: 7, link: '#5' },
+        { label: 'many', id: 8, link: '#5' },
+        { label: 'items', id: 9, link: '#6' }
       ],
       letters: [
         { letter: 'h', id: 1 },
@@ -125,6 +172,49 @@ export default {
         { letter: '?', id: 32 }
       ]
     }
+  },
+  head() {
+    const head = {}
+
+    const description =
+      "A renderless Vue component that will auto detect if menu items don't fit and moves them to a separate dropdown. Also known as the Priority+ pattern."
+
+    head.meta = [
+      {
+        hid: 'description',
+        name: 'description',
+        content: description
+      },
+      {
+        name: 'og:url',
+        content: this.$nuxt.$route.path
+      },
+      { name: 'og:type', content: 'website' },
+      {
+        name: 'og:title',
+        content: `Vue Responsive Menu | auto hide excessive menu items`
+      },
+      {
+        name: 'og:description',
+        content: description
+      }
+    ]
+
+    // Twitter card
+    head.meta = [
+      ...head.meta,
+      {
+        name: 'twitter:title',
+        content: `Vue Responsive Menu | auto hide excessive menu items`
+      },
+      {
+        name: 'twitter:description',
+        content: description
+      },
+      { name: 'twitter:site', content: 'Vue Responsive Menu' }
+    ]
+
+    return head
   }
 }
 </script>
@@ -169,5 +259,11 @@ export default {
 }
 .hello-is-it-me {
   //animation: 3s menuWidth infinite alternate ease-in-out;
+}
+
+.demo-nav--1 {
+  > li {
+    margin-right: -1px;
+  }
 }
 </style>

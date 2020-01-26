@@ -20,15 +20,15 @@ $dark: #1b1b1c;
 $white: white;
 $black: #0f0f10;
 
-$gray-100: #f8f9fa;
-$gray-200: #f4f4f4;
-$gray-300: #eaeaea;
-$gray-400: #ced4da;
-$gray-500: #bcbabd;
-$gray-600: #787d84;
-$gray-700: #495057;
-$gray-800: #343a40;
-$gray-900: #212529;
+$gray-100: #fcfcfd;
+$gray-200: #ededee;
+$gray-300: #d1d1d2;
+$gray-400: #959596;
+$gray-500: #6d6d6e;
+$gray-600: #575758;
+$gray-700: #444445;
+$gray-800: #29292a;
+$gray-900: #1b1b1c;
 $gray: $gray-500;
 $dark-gray: $gray-600;
 
@@ -40,5 +40,3 @@ $body-color: #a4a4a4;
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 @import '~assets/scss/bootstrap/variable-overrides';
-
-@debug $btn-padding-y-sm;

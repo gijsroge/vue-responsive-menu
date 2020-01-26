@@ -38,38 +38,38 @@
           </p>
         </div>
 
-        <div class="content"></div>
-      </div>
-
-      <div class="example example--1 bg-primary py-5">
-        <VueResponsiveMenu
-          #default="{ menuItems, moreMenuItems}"
-          :nav="navigation"
-        >
-          <ul
-            class="demo-nav demo-nav--1 list-unstyled d-flex flex-wrap font-weight-bold justify-content-center"
-          >
-            <li
-              class="p-2 px-4 text-dark"
-              v-for="menuItem in menuItems"
-              :key="menuItem.id"
+        <div class="content">
+          <h2>Examples</h2>
+          <div class="example example--1 py-5">
+            <VueResponsiveMenu
+              #default="{ menuItems, moreMenuItems}"
+              :nav="navigation"
             >
-              {{ menuItem.label }}
-            </li>
+              <ul
+                class="demo-nav demo-nav--1 list-unstyled d-flex flex-wrap font-weight-bold"
+              >
+                <li class="" v-for="menuItem in menuItems" :key="menuItem.id">
+                  <a href="#" class="p-2 px-4 border d-block">{{ menuItem.label }}</a>
+                </li>
 
-            <li class="p-2 px-4" v-if="moreMenuItems.length > 0">
-              {{ menuItems.length === 0 ? '☰' : 'more ↓' }}
-              <ul class="list-unstyled p-3 position-absolute bg-light">
                 <li
-                  v-for="moreMenuItem in moreMenuItems"
-                  :key="moreMenuItem.id"
+                  class="p-2 px-4 border bg-dark-gray"
+                  v-if="moreMenuItems.length > 0"
                 >
-                  {{ moreMenuItem.label }} (more)
+                  {{ menuItems.length === 0 ? '☰' : 'more ↓' }}
+                  <ul class="list-unstyled p-3 position-absolute bg-light">
+                    <li
+                      v-for="moreMenuItem in moreMenuItems"
+                      :key="moreMenuItem.id"
+                    >
+                      {{ moreMenuItem.label }} (more)
+                    </li>
+                  </ul>
                 </li>
               </ul>
-            </li>
-          </ul>
-        </VueResponsiveMenu>
+            </VueResponsiveMenu>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -89,6 +89,40 @@ export default {
         { label: 'navigation', id: 4, link: '#4' },
         { label: 'with many', id: 5, link: '#5' },
         { label: 'items', id: 6, link: '#6' }
+      ],
+      letters: [
+        { letter: 'h', id: 1 },
+        { letter: 'e', id: 2 },
+        { letter: 'l', id: 3 },
+        { letter: 'l', id: 4 },
+        { letter: 'o', id: 5 },
+        { letter: '.', id: 6 },
+        { letter: 'i', id: 7 },
+        { letter: 's', id: 8 },
+        { letter: '.', id: 9 },
+        { letter: 'i', id: 10 },
+        { letter: 't', id: 11 },
+        { letter: '.', id: 12 },
+        { letter: 'm', id: 13 },
+        { letter: 'e', id: 14 },
+        { letter: '.', id: 15 },
+        { letter: 'y', id: 16 },
+        { letter: 'o', id: 17 },
+        { letter: 'u', id: 18 },
+        { letter: 'r', id: 19 },
+        { letter: '.', id: 20 },
+        { letter: 'l', id: 21 },
+        { letter: 'o', id: 22 },
+        { letter: 'o', id: 23 },
+        { letter: 'k', id: 24 },
+        { letter: 'i', id: 25 },
+        { letter: 'n', id: 26 },
+        { letter: 'g', id: 27 },
+        { letter: '.', id: 28 },
+        { letter: 'f', id: 29 },
+        { letter: 'o', id: 30 },
+        { letter: 'r', id: 31 },
+        { letter: '?', id: 32 }
       ]
     }
   }
@@ -133,6 +167,7 @@ export default {
     width: 20%;
   }
 }
-.demo-nav {
+.hello-is-it-me {
+  //animation: 3s menuWidth infinite alternate ease-in-out;
 }
 </style>

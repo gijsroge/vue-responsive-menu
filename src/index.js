@@ -9,7 +9,7 @@ const getWidthIncludingMargin = el => {
 export default {
   props: {
     maxCharacters: {
-      type: Number,
+      type: [Number, Boolean],
       default: 30
     },
     label: {
@@ -38,6 +38,7 @@ export default {
 
   created() {
     let menuItemsCount = 0;
+    if (!this.maxCharacters) this.menuItems = this.nav;
     this.menuItems = this.nav.filter(navItem => {
       menuItemsCount += navItem[this.label].length;
       if (menuItemsCount < this.maxCharacters) {
@@ -46,6 +47,7 @@ export default {
     });
 
     let moreMenuItemsCount = 0;
+    if (!this.maxCharacters) this.moreMenuItems = [];
     this.moreMenuItems = this.nav.filter(navItem => {
       moreMenuItemsCount += navItem[this.label].length;
       if (moreMenuItemsCount >= this.maxCharacters) {
@@ -58,6 +60,7 @@ export default {
     // Register observer
     this.observer = new ResizeObserver(entries => {
       entries.forEach(entry => {
+        this.$emit("resize", entry.contentRect.width);
         this.currentMenuWidth = entry.contentRect.width;
         // Only execute if the width of our menu changed
         if (

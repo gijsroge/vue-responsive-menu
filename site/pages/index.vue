@@ -52,6 +52,7 @@
           <h2>Examples</h2>
           <div class="example example--1 py-5">
             <VueResponsiveMenu
+              :maxCharacters="false"
               class="mb-6"
               #default="{ menuItems, moreMenuItems}"
               :nav="navigation"
@@ -62,6 +63,7 @@
                   width="100%"
                   :active="['r']"
                   :fitParent="true"
+                  @resize:move="updatePopper"
                 >
                   <ul
                     data-vue-responsive-menu
@@ -82,7 +84,7 @@
                         transition="dropdown"
                         enter-active-class="dropdown-enter-active"
                         leave-active-class="dropdown-leave-active"
-                        ref="userDropdown"
+                        ref="popper"
                         trigger="clickToToggle"
                         :append-to-body="true"
                         :options="{ placement: 'bottom' }"
@@ -136,11 +138,18 @@ export default {
     Popper: () => import('vue-popperjs')
   },
   methods: {
+    updatePopper() {
+      if (
+        typeof this.$refs.popper !== 'undefined' &&
+        this.$refs.popper.showPopper
+      ) {
+        this.$refs.popper.updatePopper()
+      }
+    },
     closeAll() {
       this.moreExample1Open = false
     }
   },
-  mounted() {},
   data() {
     return {
       code: `<!-- Our renderless component that provides 2 arrays based on the array you pass in the nav prop -->
@@ -280,7 +289,7 @@ export default {
 }
 .resizable-component {
   height: auto !important;
-  animation: 1.5s menuWidth 2 alternate ease-in-out;
+  //animation: 1.5s menuWidth 2 alternate ease-in-out;
 }
 </style>
 

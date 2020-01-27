@@ -52,55 +52,72 @@
           <h2>Examples</h2>
           <div class="example example--1 py-5">
             <VueResponsiveMenu
+              class="mb-6"
               #default="{ menuItems, moreMenuItems}"
               :nav="navigation"
             >
-              <ul
-                class="demo-nav demo-nav--1 list-unstyled d-flex flex-wrap font-weight-bold"
-              >
-                <li class="" v-for="menuItem in menuItems" :key="menuItem.id">
-                  <a href="#" class="p-2 px-4 border d-block">{{
-                    menuItem.label
-                  }}</a>
-                </li>
-
-                <li class="" v-if="moreMenuItems.length > 0">
-                  <Popper
-                    transition="dropdown"
-                    enter-active-class="dropdown-enter-active"
-                    leave-active-class="dropdown-leave-active"
-                    ref="userDropdown"
-                    trigger="clickToToggle"
-                    :append-to-body="true"
-                    :options="{ placement: 'bottom' }"
+              <div class="w-100">
+                <vue-resizable
+                  :min-width="150"
+                  width="100%"
+                  :active="['r']"
+                  :fitParent="true"
+                >
+                  <ul
+                    data-vue-responsive-menu
+                    class="demo-nav demo-nav--1 list-unstyled d-flex flex-wrap font-weight-bold flex-grow-1"
                   >
-                    <div class="popper dropdown-menu-wrapper">
-                      <FocusLock>
-                        <div class="dropdown-menu m-0 shadow d-block">
-                          <ul class="list-unstyled">
-                            <a
-                              class="dropdown-item"
-                              href="#"
-                              v-for="moreMenuItem in moreMenuItems"
-                              :key="moreMenuItem.id"
-                            >
-                              {{ moreMenuItem.label }} (more)
-                            </a>
-                          </ul>
-                        </div>
-                      </FocusLock>
-                    </div>
-                    <button
-                      type="button"
-                      slot="reference"
-                      class="btn w-100 p-2 px-4 border bg-dark-gray rounded-0"
+                    <li
+                      class=""
+                      v-for="menuItem in menuItems"
+                      :key="menuItem.id"
                     >
-                      {{ menuItems.length === 0 ? '☰' : 'more ↓' }}
-                    </button>
-                  </Popper>
-                </li>
-              </ul>
+                      <a href="#" class="p-2 px-4 border d-block">{{
+                        menuItem.label
+                      }}</a>
+                    </li>
+
+                    <li class="" v-if="moreMenuItems.length > 0">
+                      <Popper
+                        transition="dropdown"
+                        enter-active-class="dropdown-enter-active"
+                        leave-active-class="dropdown-leave-active"
+                        ref="userDropdown"
+                        trigger="clickToToggle"
+                        :append-to-body="true"
+                        :options="{ placement: 'bottom' }"
+                      >
+                        <div class="popper dropdown-menu-wrapper">
+                          <FocusLock>
+                            <div class="dropdown-menu m-0 shadow d-block">
+                              <ul class="list-unstyled">
+                                <a
+                                  class="dropdown-item"
+                                  href="#"
+                                  v-for="moreMenuItem in moreMenuItems"
+                                  :key="moreMenuItem.id"
+                                >
+                                  {{ moreMenuItem.label }} (more)
+                                </a>
+                              </ul>
+                            </div>
+                          </FocusLock>
+                        </div>
+                        <button
+                          type="button"
+                          slot="reference"
+                          class="btn w-100 p-2 px-4 border bg-dark-gray rounded-0"
+                        >
+                          {{ menuItems.length === 0 ? '☰' : 'more ↓' }}
+                        </button>
+                      </Popper>
+                    </li>
+                  </ul>
+                </vue-resizable>
+              </div>
             </VueResponsiveMenu>
+
+            <pre><code class="language-html font-size-sm">{{code}}</code></pre>
           </div>
         </div>
       </div>
@@ -123,8 +140,33 @@ export default {
       this.moreExample1Open = false
     }
   },
+  mounted() {},
   data() {
     return {
+      code: `<!-- Our renderless component that provides 2 arrays based on the array you pass in the nav prop -->
+<VueResponsiveMenu #default="{ menuItems, moreMenuItems}" :nav="mainMenu.items">
+
+  <!-- Your typical menu -->
+  <ul>
+    <li v-for="item in menuItems" :key="item.id">
+      <a :href="item.href">
+        {{ item.name }}
+      </a>
+    </li>
+
+    <!-- The component exposes a moreMenuItems array that will contain all the items that don't fit -->
+    <li v-if="moreMenuItems.length">
+      <button type="button">{{ menuItems.length === 0 ? '☰' : 'more ↓' }}</button>
+      <ul>
+        <li v-for="item in moreMenuItems" :key="item.id">
+          <a :href="item.href">
+            {{ item.name }}
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</VueResponsiveMenu>`,
       moreExample1Open: false,
       navigation: [
         { label: 'This', id: 1, link: '#1' },
@@ -219,6 +261,29 @@ export default {
 }
 </script>
 
+<style lang="scss">
+@keyframes menuWidth {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 20%;
+  }
+}
+.resizable-content {
+  height: 100%;
+  width: 100%;
+  background-color: aqua;
+}
+.resizable-r {
+  background-color: $primary;
+}
+.resizable-component {
+  height: auto !important;
+  animation: 1.5s menuWidth 2 alternate ease-in-out;
+}
+</style>
+
 <style lang="scss" scoped>
 .logo {
   justify-self: center;
@@ -249,14 +314,6 @@ export default {
   grid-area: content;
 }
 
-@keyframes menuWidth {
-  from {
-    width: 100%;
-  }
-  to {
-    width: 20%;
-  }
-}
 .hello-is-it-me {
   //animation: 3s menuWidth infinite alternate ease-in-out;
 }

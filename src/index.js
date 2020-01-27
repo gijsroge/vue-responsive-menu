@@ -75,7 +75,7 @@ export default {
     });
 
     // Attach resize handler to monitor menu width
-    this.observer.observe(this.$el);
+    this.observer.observe(this.element);
   },
 
   methods: {
@@ -106,7 +106,7 @@ export default {
       if (this.menuItems.length === 0) {
         return 0;
       }
-      return Array.from(this.$el.children).reduce((total, child) => {
+      return Array.from(this.element.children).reduce((total, child) => {
         return total + getWidthIncludingMargin(child);
       }, 0);
     }
@@ -120,6 +120,13 @@ export default {
   },
 
   computed: {
+    element() {
+      if (this.$el.children.length === 1 || !this.$el instanceof HTMLElement) {
+        return this.$el.querySelector("[data-vue-responsive-menu]");
+      }
+
+      return this.$el;
+    },
     isOverflown() {
       if (!this.currentMenuWidth) return false;
       return this.currentMenuWidth < this.totalWidthOfChildren();

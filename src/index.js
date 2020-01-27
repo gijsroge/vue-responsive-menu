@@ -37,23 +37,30 @@ export default {
   },
 
   created() {
+    /* Presort menu items if maxCharacters is se. Useful for when you pre-render or SSR */
     let menuItemsCount = 0;
-    if (!this.maxCharacters) this.menuItems = this.nav;
-    this.menuItems = this.nav.filter(navItem => {
-      menuItemsCount += navItem[this.label].length;
-      if (menuItemsCount < this.maxCharacters) {
-        return navItem;
-      }
-    });
+    if (!this.maxCharacters) {
+      this.menuItems = this.nav;
+    } else {
+      this.menuItems = this.nav.filter(navItem => {
+        menuItemsCount += navItem[this.label].length;
+        if (menuItemsCount < this.maxCharacters) {
+          return navItem;
+        }
+      });
+    }
 
     let moreMenuItemsCount = 0;
-    if (!this.maxCharacters) this.moreMenuItems = [];
-    this.moreMenuItems = this.nav.filter(navItem => {
-      moreMenuItemsCount += navItem[this.label].length;
-      if (moreMenuItemsCount >= this.maxCharacters) {
-        return navItem;
-      }
-    });
+    if (!this.maxCharacters) {
+      this.moreMenuItems = [];
+    } else {
+      this.moreMenuItems = this.nav.filter(navItem => {
+        moreMenuItemsCount += navItem[this.label].length;
+        if (moreMenuItemsCount >= this.maxCharacters) {
+          return navItem;
+        }
+      });
+    }
   },
 
   mounted() {

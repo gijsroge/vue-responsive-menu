@@ -33,7 +33,8 @@ code[class*='language-']::selection {
 
 pre[class*='language-'] {
   overflow: auto;
-  background: $body-bg;
+  background: rgba(black, 0.15);
+  padding: 3rem;
 }
 
 :not(pre) > code[class*='language-'] {

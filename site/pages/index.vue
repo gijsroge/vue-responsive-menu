@@ -40,20 +40,12 @@
               height="20px"
             ></iframe>
           </div>
-          <p class="font-size-lg">
-            A renderless Vue component that will auto detect if menu items don't
-            fit and moves them to a separate dropdown. Also known as the
-            Priority+ pattern.
-          </p>
-        </div>
 
-        <div class="content">
-          <GlobalEvents @keydown.esc="closeAll()" />
-          <h2>Examples</h2>
           <div class="example example--1 py-5">
             <VueResponsiveMenu
               :maxCharacters="false"
-              class="mb-6"
+              class="resize-parent"
+              :class="{ 'has-resized': hasResized }"
               #default="{ menuItems, moreMenuItems}"
               :nav="navigation"
             >
@@ -70,16 +62,16 @@
                     class="demo-nav demo-nav--1 list-unstyled d-flex flex-wrap font-weight-bold flex-grow-1"
                   >
                     <li
-                      class=""
+                      class="d-inline-block"
                       v-for="menuItem in menuItems"
                       :key="menuItem.id"
                     >
                       <a href="#" class="p-2 px-4 border d-block">{{
                         menuItem.label
-                      }}</a>
+                        }}</a>
                     </li>
 
-                    <li class="" v-if="moreMenuItems.length > 0">
+                    <li class="d-inline-block" v-if="moreMenuItems.length > 0">
                       <Popper
                         transition="dropdown"
                         enter-active-class="dropdown-enter-active"
@@ -118,9 +110,18 @@
                 </vue-resizable>
               </div>
             </VueResponsiveMenu>
-
-            <pre><code class="language-html font-size-sm">{{code}}</code></pre>
           </div>
+          <p class="font-size-lg">
+            A renderless Vue component that will auto detect if menu items don't
+            fit and moves them to a separate dropdown. Also known as the
+            Priority+ pattern.
+          </p>
+        </div>
+
+        <div class="content">
+          <h2>How to use</h2>
+          <pre><code class="language-html font-size-sm">{{templateCode}}</code></pre>
+          <pre><code class="language-js font-size-sm">{{jsCode}}</code></pre>
         </div>
       </div>
     </div>
@@ -129,13 +130,12 @@
 
 <script>
 import VueResponsiveMenu from '../../src/index'
-
+import Popper from 'vue-popperjs'
 export default {
   components: {
     VueResponsiveMenu,
     FocusLock: () => import('vue-focus-lock'),
-    GlobalEvents: () => import('vue-global-events'),
-    Popper: () => import('vue-popperjs')
+    Popper
   },
   methods: {
     updatePopper() {
@@ -146,16 +146,27 @@ export default {
         this.$refs.popper.updatePopper()
       }
     },
+    startResize() {
+      this.hasResized = true
+    },
     closeAll() {
       this.moreExample1Open = false
     }
   },
   data() {
     return {
-      code: `<!-- Our renderless component that provides 2 arrays based on the array you pass in the nav prop -->
+      hasResized: false,
+      jsCode: `import VueResponsiveMenu from 'vue-responsive-menu'
+
+export default {
+  components: {
+    VueResponsiveMenu
+  }
+}`,
+      templateCode: `<!-- Renderless component that exposes 2 arrays based on the array you pass in the nav prop. -->
 <VueResponsiveMenu #default="{ menuItems, moreMenuItems}" :nav="mainMenu.items">
 
-  <!-- Your typical menu -->
+  <!-- menuItems contains items that fit in the remaining space. -->
   <ul>
     <li v-for="item in menuItems" :key="item.id">
       <a :href="item.href">
@@ -163,7 +174,7 @@ export default {
       </a>
     </li>
 
-    <!-- The component exposes a moreMenuItems array that will contain all the items that don't fit -->
+    <!-- moreMenuItems items that won't fit in the remaining space. -->
     <li v-if="moreMenuItems.length">
       <button type="button">{{ menuItems.length === 0 ? '☰' : 'more ↓' }}</button>
       <ul>
@@ -286,6 +297,13 @@ export default {
 }
 .resizable-r {
   background-color: $primary;
+}
+.resize-parent {
+  &:not(.has-resized) {
+    .resizable-component {
+      //width: auto !important;
+    }
+  }
 }
 .resizable-component {
   height: auto !important;

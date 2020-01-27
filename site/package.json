@@ -26,7 +26,8 @@
     "vue-global-events": "^1.1.2",
     "vue-popperjs": "^2.3.0",
     "vue-prism": "^1.0.5",
-    "vue-resizable": "^1.1.4"
+    "vue-resizable": "^1.1.4",
+    "vue-svg-loader": "^0.15.0"
   },
   "devDependencies": {
     "prettier": "^1.16.4"

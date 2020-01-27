@@ -68,7 +68,7 @@
                     >
                       <a href="#" class="p-2 px-4 border d-block">{{
                         menuItem.label
-                        }}</a>
+                      }}</a>
                     </li>
 
                     <li class="d-inline-block" v-if="moreMenuItems.length > 0">
@@ -296,7 +296,10 @@ export default {
   background-color: aqua;
 }
 .resizable-r {
-  background-color: $primary;
+  color: $black;
+  background: $primary
+    svg-load('../assets/images/svgs/icons/knob.svg', fill = currentColor)
+    no-repeat center;
 }
 .resize-parent {
   &:not(.has-resized) {

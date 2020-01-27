@@ -56,6 +56,7 @@
                   :active="['r']"
                   :fitParent="true"
                   @resize:move="updatePopper"
+                  @resize:start="startResize"
                 >
                   <ul
                     data-vue-responsive-menu
@@ -300,17 +301,18 @@ export default {
   background: $primary
     svg-load('../assets/images/svgs/icons/knob.svg', fill = currentColor)
     no-repeat center;
+  background-size: 4px 13px;
 }
 .resize-parent {
   &:not(.has-resized) {
     .resizable-component {
-      //width: auto !important;
+      width: auto !important;
     }
   }
 }
 .resizable-component {
   height: auto !important;
-  //animation: 1.5s menuWidth 2 alternate ease-in-out;
+  animation: 1.5s menuWidth 2 alternate ease-in-out;
 }
 </style>
 

@@ -63,23 +63,7 @@ export default {
     }
   },
 
-  async mounted() {
-    //https://github.com/steven0811/nuxt-breakpoints/blob/master/lib/plugin.js#L110
-
-    const needPolyfill = !Object.prototype.hasOwnProperty.call(
-      window,
-      "ResizeObserver"
-    );
-
-    if (needPolyfill) {
-      const ResizeObserver = await import("resize-observer-polyfill");
-
-      Object.defineProperty(window, "ResizeObserver", {
-        value: ResizeObserver.default,
-        writable: false
-      });
-    }
-
+  mounted() {
     // Register observer
     this.observer = new ResizeObserver(entries => {
       entries.forEach(entry => {

@@ -155,6 +155,25 @@ export default {
       this.moreExample1Open = false
     }
   },
+  async created(){
+    if(process.client){
+      //https://github.com/steven0811/nuxt-breakpoints/blob/master/lib/plugin.js#L110
+
+      const needPolyfill = !Object.prototype.hasOwnProperty.call(
+        window,
+        "ResizeObserver"
+      );
+
+      if (needPolyfill) {
+        const ResizeObserver = await import("resize-observer-polyfill");
+
+        Object.defineProperty(window, "ResizeObserver", {
+          value: ResizeObserver.default,
+          writable: false
+        });
+      }
+    }
+  },
   data() {
     return {
       hasResized: false,

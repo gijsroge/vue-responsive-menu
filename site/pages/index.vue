@@ -132,7 +132,6 @@
 <script>
 import VueResponsiveMenu from '../../src/index'
 import Popper from 'vue-popperjs'
-import ResizeObserver from 'resize-observer-polyfill';
 
 export default {
   components: {

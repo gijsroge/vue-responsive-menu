@@ -1,6 +1,6 @@
 {
   "name": "vue-responsive-menu",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A renderless Vue component that will auto detect if menu items don't fit and moves them to a separate dropdown. Also known as the Priority+ pattern.",
   "author": {
     "name": "Gijs Rogé",

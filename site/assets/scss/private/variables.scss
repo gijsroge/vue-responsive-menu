@@ -1,5 +1,5 @@
 // Colors
-$body-color: #3e3f42;
+$body-color: #b0b0b0;
 
 // Colors
 $blue: #24abee;
@@ -13,9 +13,10 @@ $cyan: #17a2b8;
 $warning: $orange;
 $success: $green;
 $twitter: #1da1f2;
+$pink: #e83e8c;
 
 $primary: $red;
-$secondary: $orange;
+$secondary: $pink;
 $dark: #1b1b1c;
 $white: white;
 $black: #0f0f10;
@@ -31,11 +32,11 @@ $gray-800: #29292a;
 $gray-900: #1b1b1c;
 $gray: $gray-500;
 $dark-gray: $gray-600;
+$code-color: $secondary;
 
 $light: $gray-200;
 
 $body-bg: $black;
-$body-color: #a4a4a4;
 
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';

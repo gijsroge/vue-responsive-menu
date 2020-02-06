@@ -19,7 +19,7 @@ export default {
       {
         rel: 'stylesheet',
         href:
-          'https://fonts.googleapis.com/css?family=Dosis:700|Lato:300,400,700&display=swap'
+          'https://fonts.googleapis.com/css?family=Lato:300|Open+Sans:300,400,700&display=swap'
       },
       {
         rel: 'apple-touch-icon',

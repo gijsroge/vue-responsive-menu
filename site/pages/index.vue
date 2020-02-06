@@ -10,16 +10,21 @@
 
         <div>
           <h1 class="font-weight-light m-0">
-            A flexible responsive menu
+            {{ name }}
           </h1>
           <span
-            class="font-size-sm font-weight-bold d-inline-block position-absolute"
+            class="ml-2 font-size-sm font-weight-bold d-inline-block position-absolute"
             style="color: #41b883"
             >for Vue.js</span
           >
         </div>
 
-        <div class="description py-5 mt-4">
+        <div class="description py-md-5 mt-3 mt-md-4">
+          <p class="font-size-lg headings-font-family">
+            A renderless Vue component using Resize Observer to detect if menu
+            items dont't fit its parent and moves them to a separate menu.
+          </p>
+
           <div class="d-flex align-items-center mb-5">
             <a
               class="btn btn-sm btn-secondary btn-twitter mr-3"
@@ -112,17 +117,26 @@
               </div>
             </VueResponsiveMenu>
           </div>
-          <p class="font-size-lg">
-            A renderless Vue component that will auto detect if menu items don't
-            fit and moves them to a separate dropdown. Also known as the
-            Priority+ pattern.
-          </p>
         </div>
 
         <div class="content">
-          <h2>How to use</h2>
-          <pre><code class="language-html font-size-sm">{{templateCode}}</code></pre>
+          <h2 class="h4 text-dark-gray base-font-family font-weight-normal">
+            How to use
+          </h2>
+          <h3>Install {{ name }}</h3>
+          <pre><code class="language-markup">yarn add vue-responsive-menu</code></pre>
+
+          <h3>Register as a Vue component</h3>
           <pre><code class="language-js font-size-sm">{{jsCode}}</code></pre>
+
+          <h3>Pass your menu in the <code>:nav</code> prop</h3>
+          <p class="text-muted">
+            {{ name }} will expose 2 new arrays, <br />
+            <b class="">1 normal menu</b> and
+            <b class="">1 with the excess items</b>.
+          </p>
+          <pre><code class="language-html font-size-sm">{{templateCode}}</code></pre><!--
+          <pre><code class="language-html font-size-sm">{{scriptCode}}</code></pre>-->
         </div>
       </div>
     </div>
@@ -132,7 +146,6 @@
 <script>
 import VueResponsiveMenu from '../../src/index'
 import Popper from 'vue-popperjs'
-
 export default {
   components: {
     VueResponsiveMenu,
@@ -155,27 +168,10 @@ export default {
       this.moreExample1Open = false
     }
   },
-  async created(){
-    if(process.client){
-      //https://github.com/steven0811/nuxt-breakpoints/blob/master/lib/plugin.js#L110
-
-      const needPolyfill = !Object.prototype.hasOwnProperty.call(
-        window,
-        "ResizeObserver"
-      );
-
-      if (needPolyfill) {
-        const ResizeObserver = await import("resize-observer-polyfill");
-
-        Object.defineProperty(window, "ResizeObserver", {
-          value: ResizeObserver.default,
-          writable: false
-        });
-      }
-    }
-  },
+  created() {},
   data() {
     return {
+      name: 'Responsive menu',
       hasResized: false,
       jsCode: `import VueResponsiveMenu from 'vue-responsive-menu'
 
@@ -187,7 +183,7 @@ export default {
       templateCode: `<!-- Renderless component that exposes 2 arrays based on the array you pass in the nav prop. -->
 <VueResponsiveMenu #default="{ menuItems, moreMenuItems}" :nav="mainMenu.items">
 
-  <!-- menuItems contains items that fit in the remaining space. -->
+  <!-- Default menu -->
   <ul>
     <li v-for="item in menuItems" :key="item.id">
       <a :href="item.href">
@@ -195,7 +191,7 @@ export default {
       </a>
     </li>
 
-    <!-- moreMenuItems items that won't fit in the remaining space. -->
+    <!-- More menu with the items that didn't fit -->
     <li v-if="moreMenuItems.length">
       <button type="button">{{ menuItems.length === 0 ? '☰' : 'more ↓' }}</button>
       <ul>
@@ -207,7 +203,27 @@ export default {
       </ul>
     </li>
   </ul>
+
 </VueResponsiveMenu>`,
+      scriptCode: `<script>
+  export default {
+    data() {
+      return {
+        navigation: [
+          { label: 'This', id: 1, link: '#1' },
+          { label: 'is an', id: 2, link: '#2' },
+          { label: 'example', id: 3, link: '#3' },
+          { label: 'navigation', id: 4, link: '#4' },
+          { label: 'with many', id: 5, link: '#5' },
+          { label: 'many', id: 6, link: '#5' },
+          { label: 'many', id: 7, link: '#5' },
+          { label: 'many', id: 8, link: '#5' },
+          { label: 'items', id: 9, link: '#6' }
+        ]
+      }
+    }
+  }
+<\/script>`,
       moreExample1Open: false,
       navigation: [
         { label: 'This', id: 1, link: '#1' },
@@ -303,6 +319,8 @@ export default {
 </script>
 
 <style lang="scss">
+pre {
+}
 @keyframes menuWidth {
   from {
     width: 100%;
@@ -322,8 +340,12 @@ export default {
     svg-load('../assets/images/svgs/icons/knob.svg', fill = currentColor)
     no-repeat center;
   background-size: 4px 13px;
+  transform: scaleY(1.5);
+  filter: drop-shadow(0 0 50px $black);
 }
 .resize-parent {
+  max-width: 1100px;
+
   &:not(.has-resized) {
     .resizable-component {
       width: auto !important;
@@ -338,7 +360,9 @@ export default {
 
 <style lang="scss" scoped>
 .logo {
-  justify-self: center;
+  @include media-breakpoint-up(md){
+    justify-self: center;
+  }
 }
 .grid {
   display: grid;
@@ -346,16 +370,23 @@ export default {
     'logo header'
     'description description'
     'content content';
-  align-items: center;
-  grid-column-gap: 3rem;
+
+  grid-column-gap: 1rem;
+  grid-template-columns: 56px minmax(50px, 1fr);
 
   @include media-breakpoint-up(md) {
-    grid-template-columns: 300px 1fr;
+    align-items: center;
+    grid-column-gap: 3rem;
+    grid-template-columns: 100px minmax(100px, 1100px);
     grid-template-rows: auto auto;
     grid-template-areas:
       'logo header'
       '....... description '
       '....... content';
+  }
+
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: 300px minmax(100px, 1100px);
   }
 }
 

@@ -34,14 +34,13 @@ code[class*='language-']::selection {
 pre[class*='language-'] {
   overflow: auto;
   background: rgba(black, 0.15);
-  padding: 3rem;
+  padding: 2rem;
 }
 
 :not(pre) > code[class*='language-'] {
-  padding: 0.1em 0.3em;
-  border-radius: 0.3em;
+  padding: 0.3em 0.5em;
   color: #db4c69;
-  background: #f9f2f4;
+  background: rgba(black, 0.15);
 }
 /*********************************************************
 * Tokens

@@ -28,7 +28,7 @@
           <div class="d-flex align-items-center mb-5">
             <a
               class="btn btn-sm btn-secondary btn-twitter mr-3"
-              href="https://twitter.com/intent/tweet?text=Vue responsive menu — Auto detect if menu items don't fit and moves them to a separate dropdown.%0avia @GijsRoge%0a%0a👉 vue-responsive-menu.netlify.com"
+              href="https://twitter.com/intent/tweet?text=Vue responsive menu — Auto detect if menu items don't fit and moves them to a separate dropdown.%0a%0a👉 vue-responsive-menu.netlify.com"
             >
               <svg-icon
                 class="mr-1"
@@ -131,7 +131,7 @@
 
           <h3>Pass your menu in the <code>:nav</code> prop</h3>
           <p class="text-muted">
-            {{ name }} will expose 2 new arrays, <br />
+            {{ name }} will expose 2 new arrays in the default prop, <br />
             <b class="">1 normal menu</b> and
             <b class="">1 with the excess items</b>.
           </p>

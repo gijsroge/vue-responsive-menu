@@ -160,7 +160,7 @@
           <table class="options-table">
             <thead>
               <tr>
-                <th>Name</th>
+                <th>Prop</th>
                 <th>Default</th>
                 <th>Type</th>
                 <th>Description</th>
@@ -168,7 +168,7 @@
             </thead>
             <tbody>
               <tr>
-                <td>nav <span class="text-muted">(required)</span></td>
+                <td>:nav <span class="text-muted">(required)</span></td>
                 <td><code class="language-js font-size-sm">[]</code></td>
                 <td>
                   Array of objects
@@ -176,7 +176,7 @@
                 <td></td>
               </tr>
               <tr>
-                <td>maxCharacters</td>
+                <td>:maxCharacters</td>
                 <td><code class="language-js font-size-sm">false</code></td>
                 <td>Number | Boolean</td>
                 <td></td>
@@ -191,12 +191,6 @@
                     >Only needed if you enable maxCharacters.</i
                   >
                 </td>
-              </tr>
-              <tr>
-                <td>maxCharacters</td>
-                <td><code class="language-js font-size-sm">30</code></td>
-                <td>Number | Boolean</td>
-                <td></td>
               </tr>
             </tbody>
           </table>

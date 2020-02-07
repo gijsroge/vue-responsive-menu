@@ -186,7 +186,7 @@
                 <td><code class="language-js font-size-sm">'label'</code></td>
                 <td>String</td>
                 <td>
-                  Key where to read the menu item label. <br /><i
+                  Key to read the menu item label. <br /><i
                     class="font-size-sm"
                     >Only needed if you enable maxCharacters.</i
                   >

@@ -13,7 +13,7 @@
             {{ name }}
           </h1>
           <span
-            class="ml-2 font-size-sm font-weight-bold d-inline-block position-absolute"
+            class="ml-lg-2 font-size-sm font-weight-bold d-inline-block position-absolute"
             style="color: #41b883"
             >for Vue.js</span
           >

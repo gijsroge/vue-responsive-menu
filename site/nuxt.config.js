@@ -47,7 +47,7 @@ export default {
         href: '/favicons/safari-pinned-tab.svg',
         color: '#ff2940'
       },
-      { rel: 'icon', type: 'image/png', href: '/favicon.png' }
+      { rel: 'icon', type: 'image/png', href: '/favicons/favicon.png' }
     ]
   },
   /*

@@ -10,7 +10,7 @@
     "serve": "vue-cli-service serve demo",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "test": "vue-cli-service test:e2e --spec tests/e2e/specs/test.js",
+    "test": "yarn vue-cli-service test:e2e --spec tests/e2e/specs/test.js",
     "lint": "vue-cli-service lint",
     "build:npm": "rollit",
     "release": "release-it"

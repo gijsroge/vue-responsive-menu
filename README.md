@@ -1,5 +1,5 @@
 [![Vue responsive menu logo](https://vue-responsive-menu.netlify.com/favicons/apple-touch-icon-152x152.png)](https://vue-responsive-menu.netlify.com/)
-# A vue responsive menu
+# A responsive menu build for Vue.js
 
 A renderless Vue component that will auto detect if menu items don't fit and moves them to a separate dropdown. Also known as the Priority+ pattern.
 

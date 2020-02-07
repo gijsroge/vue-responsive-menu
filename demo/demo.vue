@@ -1,6 +1,6 @@
 <template>
   <VueResponsiveMenu #default="{ menuItems, moreMenuItems}" :nav="navigation">
-    <ul class="mainnav list-unstyled d-flex flex-wrap">
+    <ul class="mainnav list-unstyled d-flex flex-wrap" data-cypress="mainnav">
       <li
         class="p-2 px-4 bg-light"
         v-for="menuItem in menuItems"

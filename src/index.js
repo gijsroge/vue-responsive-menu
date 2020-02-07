@@ -138,7 +138,10 @@ export default {
 
   computed: {
     element() {
-      if (this.$el.children.length === 1 || !this.$el instanceof HTMLElement) {
+      if (
+        this.$el.children.length === 1 ||
+        !(this.$el instanceof HTMLElement)
+      ) {
         return this.$el.querySelector("[data-vue-responsive-menu]");
       }
 

@@ -47,76 +47,67 @@
           </div>
 
           <div class="example example--1 py-5">
-            <VueResponsiveMenu
-              v-if="responsiveMenuReady"
-              :maxCharacters="false"
-              class="resize-parent"
-              :class="{ 'has-resized': hasResized }"
-              #default="{ menuItems, moreMenuItems}"
-              :nav="navigation"
-            >
-              <div class="w-100">
-                <vue-resizable
-                  :min-width="150"
-                  width="100%"
-                  :active="['r']"
-                  :fitParent="true"
-                  @resize:move="updatePopper"
-                  @resize:start="startResize"
+            <ResizeContent class="resize-animation">
+              <VueResponsiveMenu
+                v-if="responsiveMenuReady"
+                :maxCharacters="false"
+                class="resize-parent"
+                :class="{ 'has-resized': hasResized }"
+                #default="{ menuItems, moreMenuItems}"
+                :nav="navigation"
+              >
+                <ul
+                  data-vue-responsive-menu
+                  class="demo-nav demo-nav--1 list-unstyled d-flex flex-wrap font-weight-bold flex-grow-1"
                 >
-                  <ul
-                    data-vue-responsive-menu
-                    class="demo-nav demo-nav--1 list-unstyled d-flex flex-wrap font-weight-bold flex-grow-1"
+                  <li
+                    class="d-inline-block"
+                    v-for="menuItem in menuItems"
+                    :key="menuItem.id"
                   >
-                    <li
-                      class="d-inline-block"
-                      v-for="menuItem in menuItems"
-                      :key="menuItem.id"
-                    >
-                      <a href="#" class="p-2 px-4 border d-block">{{
-                        menuItem.label
-                      }}</a>
-                    </li>
+                    <a href="#" class="p-2 px-4 border d-block">{{
+                      menuItem.label
+                    }}</a>
+                  </li>
 
-                    <li class="d-inline-block" v-if="moreMenuItems.length > 0">
-                      <Popper
-                        transition="dropdown"
-                        enter-active-class="dropdown-enter-active"
-                        leave-active-class="dropdown-leave-active"
-                        ref="popper"
-                        trigger="clickToToggle"
-                        :append-to-body="true"
-                        :options="{ placement: 'bottom' }"
+                  <li class="d-inline-block" v-if="moreMenuItems.length > 0">
+                    <Popper
+                      transition="dropdown"
+                      enter-active-class="dropdown-enter-active"
+                      leave-active-class="dropdown-leave-active"
+                      ref="popper"
+                      trigger="clickToToggle"
+                      :append-to-body="true"
+                      :options="{ placement: 'bottom' }"
+                    >
+                      <div class="popper dropdown-menu-wrapper">
+                        <FocusLock>
+                          <div class="dropdown-menu m-0 shadow d-block">
+                            <ul class="list-unstyled">
+                              <a
+                                class="dropdown-item"
+                                href="#"
+                                v-for="moreMenuItem in moreMenuItems"
+                                :key="moreMenuItem.id"
+                              >
+                                {{ moreMenuItem.label }} (more)
+                              </a>
+                            </ul>
+                          </div>
+                        </FocusLock>
+                      </div>
+                      <button
+                        type="button"
+                        slot="reference"
+                        class="btn w-100 p-2 px-4 border bg-dark-gray rounded-0"
                       >
-                        <div class="popper dropdown-menu-wrapper">
-                          <FocusLock>
-                            <div class="dropdown-menu m-0 shadow d-block">
-                              <ul class="list-unstyled">
-                                <a
-                                  class="dropdown-item"
-                                  href="#"
-                                  v-for="moreMenuItem in moreMenuItems"
-                                  :key="moreMenuItem.id"
-                                >
-                                  {{ moreMenuItem.label }} (more)
-                                </a>
-                              </ul>
-                            </div>
-                          </FocusLock>
-                        </div>
-                        <button
-                          type="button"
-                          slot="reference"
-                          class="btn w-100 p-2 px-4 border bg-dark-gray rounded-0"
-                        >
-                          {{ menuItems.length === 0 ? '☰' : 'more ↓' }}
-                        </button>
-                      </Popper>
-                    </li>
-                  </ul>
-                </vue-resizable>
-              </div>
-            </VueResponsiveMenu>
+                        {{ menuItems.length === 0 ? '☰' : 'more ↓' }}
+                      </button>
+                    </Popper>
+                  </li>
+                </ul>
+              </VueResponsiveMenu>
+            </ResizeContent>
           </div>
 
           <section class="delay-show">
@@ -129,7 +120,10 @@
                 <span class="mr-2">🎨</span> No styling included, only exposes
                 reactive state.
               </li>
-              <li><span class="mr-2">☁</span>️ Lightweight <span class="text-muted">1.14kb</span></li>
+              <li>
+                <span class="mr-2">☁</span>️ Lightweight
+                <span class="text-muted">1.14kb</span>
+              </li>
               <li>
                 <span class="mr-2">💪</span> Resize Observer for better
                 performance.
@@ -166,9 +160,11 @@
 <script>
 import Vue from 'vue'
 import Popper from 'vue-popperjs'
+
 export default {
   components: {
     FocusLock: () => import('vue-focus-lock'),
+    ResizeContent: () => import('~/components/ResizeContent.vue'),
     Popper
   },
   async mounted() {
@@ -179,7 +175,6 @@ export default {
     }
 
     const VueResponsiveMenu = await import('../../src/index')
-    console.log(VueResponsiveMenu)
     Vue.component('VueResponsiveMenu', VueResponsiveMenu.default)
     this.responsiveMenuReady = true
   },
@@ -199,7 +194,6 @@ export default {
       this.moreExample1Open = false
     }
   },
-  created() {},
   data() {
     return {
       responsiveMenuReady: false,
@@ -368,31 +362,7 @@ export default {
     width: 20%;
   }
 }
-.resizable-content {
-  height: 100%;
-  width: 100%;
-  background-color: aqua;
-}
-.resizable-r {
-  color: $black;
-  background: $primary
-    svg-load('../assets/images/svgs/icons/knob.svg', fill = currentColor)
-    no-repeat center;
-  background-size: 4px 13px;
-  transform: scaleY(1.5);
-  filter: drop-shadow(0 0 50px $black);
-}
-.resize-parent {
-  max-width: 1100px;
-
-  &:not(.has-resized) {
-    .resizable-component {
-      width: auto !important;
-    }
-  }
-}
-.resizable-component {
-  height: auto !important;
+.resize-animation {
   animation: 1.5s 0.5s menuWidth 2 alternate ease-in-out;
 }
 </style>

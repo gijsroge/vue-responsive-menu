@@ -70,7 +70,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/vue-resize.js', mode: 'client' }],
+  plugins: [{ src: '~/plugins/vue-prism.js', mode: 'client' }],
   /*
    ** Nuxt.js dev-modules
    */

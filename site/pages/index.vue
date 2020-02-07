@@ -89,7 +89,7 @@
                           <div
                             class="dropdown-menu dropdown-black m-0 shadow d-block"
                           >
-                            <ul class="list-unstyled">
+                            <ul class="list-unstyled mb-0">
                               <a
                                 class="dropdown-item"
                                 href="#"

@@ -163,24 +163,24 @@
             <thead>
               <tr>
                 <th>Prop</th>
-                <th>Default</th>
                 <th>Type</th>
+                <th>Default</th>
                 <th>Description</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>:nav <span class="text-muted">(required)</span></td>
-                <td><code class="language-js font-size-sm">[]</code></td>
                 <td>
                   Array of objects
                 </td>
+                <td><code class="language-js font-size-sm">[]</code></td>
                 <td></td>
               </tr>
               <tr>
                 <td>:maxCharacters</td>
-                <td><code class="language-js font-size-sm">false</code></td>
                 <td>Number | Boolean</td>
+                <td><code class="language-js font-size-sm">false</code></td>
                 <td></td>
               </tr>
               <tr>
@@ -478,7 +478,7 @@ export default {
     }
   }
   opacity: 0;
-  animation: delay-show forwards 7s 2s;
+  //animation: delay-show forwards 7s 2s;
 }
 @keyframes menuWidth {
   from {

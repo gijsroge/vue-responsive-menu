@@ -445,7 +445,7 @@ export default {
     }
   }
   opacity: 0;
-  animation: delay-show forwards 7s 2s;
+  animation: delay-show forwards 4s 2s;
 }
 @keyframes menuWidth {
   from {

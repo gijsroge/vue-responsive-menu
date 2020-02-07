@@ -8,7 +8,7 @@
           style="width: 3.5rem; height: 3.5rem"
         />
 
-        <div class="delay-show">
+        <div class="delay-show ml-lg-n2">
           <h1 class="font-weight-light m-0">
             {{ name }}
           </h1>
@@ -86,7 +86,9 @@
                     >
                       <div class="popper dropdown-menu-wrapper">
                         <FocusLock>
-                          <div class="dropdown-menu dropdown-black m-0 shadow d-block">
+                          <div
+                            class="dropdown-menu dropdown-black m-0 shadow d-block"
+                          >
                             <ul class="list-unstyled">
                               <a
                                 class="dropdown-item"
@@ -94,7 +96,7 @@
                                 v-for="moreMenuItem in moreMenuItems"
                                 :key="moreMenuItem.id"
                               >
-                                {{ moreMenuItem.label }} (more)
+                                {{ moreMenuItem.label }}
                               </a>
                             </ul>
                           </div>
@@ -104,7 +106,7 @@
                         type="button"
                         slot="reference"
                         class="btn p-md-2 p-1 px-2 px-md-4 border bg-black rounded-0"
-                        :style="menuItems.length === 0 ? 'width: 70px;' : ''"
+                        :style="menuItems.length === 0 ? 'width: 100px;' : ''"
                       >
                         {{ menuItems.length === 0 ? '☰' : 'more ↓' }}
                       </button>
@@ -370,7 +372,6 @@ export default {
     }
   }
 <\/script>`,
-      moreExample1Open: false,
       navigation: [
         { label: 'This', id: 1, link: '#1' },
         { label: 'is an', id: 2, link: '#2' },
@@ -381,40 +382,6 @@ export default {
         { label: 'many', id: 7, link: '#5' },
         { label: 'many', id: 8, link: '#5' },
         { label: 'items', id: 9, link: '#6' }
-      ],
-      letters: [
-        { letter: 'h', id: 1 },
-        { letter: 'e', id: 2 },
-        { letter: 'l', id: 3 },
-        { letter: 'l', id: 4 },
-        { letter: 'o', id: 5 },
-        { letter: '.', id: 6 },
-        { letter: 'i', id: 7 },
-        { letter: 's', id: 8 },
-        { letter: '.', id: 9 },
-        { letter: 'i', id: 10 },
-        { letter: 't', id: 11 },
-        { letter: '.', id: 12 },
-        { letter: 'm', id: 13 },
-        { letter: 'e', id: 14 },
-        { letter: '.', id: 15 },
-        { letter: 'y', id: 16 },
-        { letter: 'o', id: 17 },
-        { letter: 'u', id: 18 },
-        { letter: 'r', id: 19 },
-        { letter: '.', id: 20 },
-        { letter: 'l', id: 21 },
-        { letter: 'o', id: 22 },
-        { letter: 'o', id: 23 },
-        { letter: 'k', id: 24 },
-        { letter: 'i', id: 25 },
-        { letter: 'n', id: 26 },
-        { letter: 'g', id: 27 },
-        { letter: '.', id: 28 },
-        { letter: 'f', id: 29 },
-        { letter: 'o', id: 30 },
-        { letter: 'r', id: 31 },
-        { letter: '?', id: 32 }
       ]
     }
   },
@@ -534,11 +501,6 @@ export default {
 .content {
   grid-area: content;
 }
-
-.hello-is-it-me {
-  //animation: 3s menuWidth infinite alternate ease-in-out;
-}
-
 .demo-nav--1 {
   > li {
     margin-right: -1px;

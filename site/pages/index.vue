@@ -1,7 +1,7 @@
 <template>
   <div class="root d-flex">
     <div class="flex-grow-1">
-      <div class="grid flex-grow-1 p-3 p-md-6 p-lg-8 justify-content-center">
+      <div class="grid flex-grow-1 p-5 p-md-6 p-xxl-8 justify-content-center">
         <svg-icon
           class="logo delay-show"
           name="logo"
@@ -19,7 +19,7 @@
           >
         </div>
 
-        <div class="description py-md-5 mt-3 mt-md-4">
+        <div class="description py-md-5 mt-5 mt-md-4">
           <p class="font-size-lg headings-font-family delay-show">
             A renderless Vue component using Resize Observer to detect if menu
             items dont't fit its parent and moves them to a separate menu.
@@ -46,7 +46,7 @@
             ></iframe>
           </div>
 
-          <div class="example example--1 py-5">
+          <div class="example example--1 py-5 mb-5">
             <ResizeContent class="resize-animation">
               <VueResponsiveMenu
                 v-if="responsiveMenuReady"
@@ -395,6 +395,9 @@ export default {
   }
 
   @include media-breakpoint-up(lg) {
+    grid-template-columns: 100px minmax(100px, 1100px);
+  }
+  @include media-breakpoint-up(xxl) {
     grid-template-columns: 300px minmax(100px, 1100px);
   }
 }

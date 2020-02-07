@@ -58,7 +58,7 @@
               >
                 <ul
                   data-vue-responsive-menu
-                  class="demo-nav demo-nav--1 list-unstyled d-flex flex-wrap font-weight-bold flex-grow-1"
+                  class="demo-nav demo-nav--1 list-unstyled d-flex flex-wrap font-weight-bold flex-grow-1 mb-0"
                 >
                   <li
                     class="d-inline-block"

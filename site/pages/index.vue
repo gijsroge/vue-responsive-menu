@@ -478,7 +478,7 @@ export default {
   @include media-breakpoint-up(md) {
     align-items: center;
     grid-column-gap: 3rem;
-    grid-template-columns: 100px minmax(100px, 1100px);
+    grid-template-columns: 100px minmax(100px, 1200px);
     grid-template-rows: auto auto;
     grid-template-areas:
       'logo header'
@@ -487,10 +487,10 @@ export default {
   }
 
   @include media-breakpoint-up(lg) {
-    grid-template-columns: 100px minmax(100px, 1100px);
+    grid-template-columns: 100px minmax(100px, 1200px);
   }
   @include media-breakpoint-up(xxl) {
-    grid-template-columns: 300px minmax(100px, 1100px);
+    grid-template-columns: 300px minmax(100px, 1200px);
   }
 }
 

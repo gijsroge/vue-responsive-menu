@@ -67,7 +67,6 @@ div {
 .handle {
   top: 0;
   right: 0;
-  content: '';
   position: absolute;
   width: 20px;
   height: 100%;
@@ -80,5 +79,15 @@ div {
   filter: drop-shadow(0 0 50px $black);
   touch-action: pan-x !important;
   user-select: none;
+
+  &:after {
+    content: '';
+    width: 60px;
+    height: 130%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 </style>

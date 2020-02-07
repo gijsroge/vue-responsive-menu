@@ -65,9 +65,11 @@
                     v-for="menuItem in menuItems"
                     :key="menuItem.id"
                   >
-                    <a href="#" class="p-2 px-4 border d-block">{{
-                      menuItem.label
-                    }}</a>
+                    <a
+                      href="#"
+                      class="p-md-2 p-1 px-2 px-md-4 border d-block"
+                      >{{ menuItem.label }}</a
+                    >
                   </li>
 
                   <li class="d-inline-block" v-if="moreMenuItems.length > 0">
@@ -99,7 +101,8 @@
                       <button
                         type="button"
                         slot="reference"
-                        class="btn w-100 p-2 px-4 border bg-dark-gray rounded-0"
+                        class="btn p-md-2 p-1 px-2 px-md-4 border bg-dark-gray rounded-0"
+                        :style="menuItems.length === 0 ? 'width: 70px;' : ''"
                       >
                         {{ menuItems.length === 0 ? '☰' : 'more ↓' }}
                       </button>

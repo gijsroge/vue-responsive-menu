@@ -131,6 +131,10 @@
                 <span class="mr-2">💪</span> Resize Observer for better
                 performance.
               </li>
+              <li>
+                <span class="mr-2">🔪</span> Set max amount of characters so
+                extra items get cut off on initial render. Useful in SSR.
+              </li>
             </ul>
           </section>
         </div>
@@ -152,6 +156,54 @@
             <b class="">1 with the excess items</b>.
           </p>
           <pre><code class="language-html font-size-sm">{{templateCode}}</code></pre>
+          <h3>Available options</h3>
+          <table class="options-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Default</th>
+                <th>Type</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>nav <span class="text-muted">(required)</span></td>
+                <td><code class="language-js font-size-sm">[]</code></td>
+                <td>
+                  Array of objects
+                </td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>maxCharacters</td>
+                <td><code class="language-js font-size-sm">false</code></td>
+                <td>Number | Boolean</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Label</td>
+                <td><code class="language-js font-size-sm">'label'</code></td>
+                <td>String</td>
+                <td>
+                  Key where to read the menu item label. <br /><i
+                    class="font-size-sm"
+                    >Only needed if you enable maxCharacters.</i
+                  >
+                </td>
+              </tr>
+              <tr>
+                <td>maxCharacters</td>
+                <td><code class="language-js font-size-sm">30</code></td>
+                <td>Number | Boolean</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Example with options</h3>
+          <span class="text-muted">MainMenu.vue</span>
+          <pre><code class="language-html font-size-sm">{{example2}}</code></pre>
           <!--
           <pre><code class="language-html font-size-sm">{{scriptCode}}</code></pre>-->
         </div>
@@ -209,6 +261,37 @@ export default {
     VueResponsiveMenu
   }
 }`,
+      example2: `<template>
+  <!-- This will render max 35 characters counted from the name key in the nav array. In this case the first 5 menu items -->
+  <VueResponsiveMenu
+    #default="{ menuItems, moreMenuItems}" :maxCharacters="35" label="name" :nav="mainMenu.items">
+      <!-- ... -->
+  </VueResponsiveMenu>
+</template>
+
+<script>
+  import VueResponsiveMenu from 'vue-responsive-menu'
+  export default {
+    components: {
+      VueResponsiveMenu
+    }
+    data() {
+      return {
+        navigation: [
+          { name: 'This', id: 1, link: '#1' },
+          { name: 'is an', id: 2, link: '#2' },
+          { name: 'example', id: 3, link: '#3' },
+          { name: 'navigation', id: 4, link: '#4' },
+          { name: 'with many', id: 5, link: '#5' },
+          { name: 'many', id: 6, link: '#5' },
+          { name: 'many', id: 7, link: '#5' },
+          { name: 'many', id: 8, link: '#5' },
+          { name: 'items', id: 9, link: '#6' }
+        ]
+      }
+    }
+  }
+<\/script>`,
       templateCode: `<!-- Renderless component that exposes 2 arrays based on the array you pass in the nav prop. -->
 <VueResponsiveMenu #default="{ menuItems, moreMenuItems}" :nav="mainMenu.items">
 
@@ -348,6 +431,12 @@ export default {
 </script>
 
 <style lang="scss">
+.options-table {
+  td,
+  th {
+    padding: 0.5rem;
+  }
+}
 .delay-show {
   @keyframes delay-show {
     to {

@@ -10,7 +10,7 @@ export default {
   props: {
     maxCharacters: {
       type: [Number, Boolean],
-      default: 30
+      default: false
     },
     label: {
       type: String,

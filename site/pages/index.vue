@@ -50,11 +50,13 @@
             <ResizeContent class="resize-animation">
               <VueResponsiveMenu
                 v-if="responsiveMenuReady"
+                @menu-resized="updatePopper()"
                 :maxCharacters="false"
                 class="resize-parent"
                 :class="{ 'has-resized': hasResized }"
                 #default="{ menuItems, moreMenuItems}"
                 :nav="navigation"
+                :offset="30"
               >
                 <ul
                   data-vue-responsive-menu
@@ -72,7 +74,7 @@
                     >
                   </li>
 
-                  <li class="d-inline-block" v-if="moreMenuItems.length > 0">
+                  <li class="d-inline-block" v-show="moreMenuItems.length > 0">
                     <Popper
                       transition="dropdown"
                       enter-active-class="dropdown-enter-active"
@@ -84,7 +86,7 @@
                     >
                       <div class="popper dropdown-menu-wrapper">
                         <FocusLock>
-                          <div class="dropdown-menu m-0 shadow d-block">
+                          <div class="dropdown-menu dropdown-black m-0 shadow d-block">
                             <ul class="list-unstyled">
                               <a
                                 class="dropdown-item"
@@ -101,7 +103,7 @@
                       <button
                         type="button"
                         slot="reference"
-                        class="btn p-md-2 p-1 px-2 px-md-4 border bg-dark-gray rounded-0"
+                        class="btn p-md-2 p-1 px-2 px-md-4 border bg-black rounded-0"
                         :style="menuItems.length === 0 ? 'width: 70px;' : ''"
                       >
                         {{ menuItems.length === 0 ? '☰' : 'more ↓' }}
@@ -186,10 +188,42 @@
                 <td><code class="language-js font-size-sm">'label'</code></td>
                 <td>String</td>
                 <td>
-                  Key to read the menu item label. <br /><i
-                    class="font-size-sm"
+                  Key to read the menu item label. <br /><i class="font-size-sm"
                     >Only needed if you enable maxCharacters.</i
                   >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>Available events</h3>
+          <table class="options-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Payload</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>@menu-resized</td>
+                <td>
+                  <code class="language-markup font-size-sm">number</code>
+                  <span class="text-muted">in pixels</span>
+                </td>
+              </tr>
+              <tr>
+                <td>@item-to-dropdown</td>
+                <td>
+                  <code class="language-markup font-size-sm">object</code>
+                  <span class="text-muted">From nav prop</span>
+                </td>
+              </tr>
+              <tr>
+                <td>@item-to-menu</td>
+                <td>
+                  <code class="language-markup font-size-sm">object</code>
+                  <span class="text-muted">From nav prop</span>
                 </td>
               </tr>
             </tbody>
@@ -226,6 +260,18 @@ export default {
     const VueResponsiveMenu = await import('../../src/index')
     Vue.component('VueResponsiveMenu', VueResponsiveMenu.default)
     this.responsiveMenuReady = true
+
+    setTimeout(() => {
+      if (typeof this.$refs.popper !== 'undefined') {
+        this.$refs.popper.doShow()
+      }
+    }, 200)
+
+    setTimeout(() => {
+      if (typeof this.$refs.popper !== 'undefined') {
+        this.$refs.popper.doClose()
+      }
+    }, 3000)
   },
   methods: {
     updatePopper() {
@@ -233,14 +279,8 @@ export default {
         typeof this.$refs.popper !== 'undefined' &&
         this.$refs.popper.showPopper
       ) {
-        this.$refs.popper.updatePopper()
+        this.$refs.popper.popperJS.update()
       }
-    },
-    startResize() {
-      this.hasResized = true
-    },
-    closeAll() {
-      this.moreExample1Open = false
     }
   },
   data() {

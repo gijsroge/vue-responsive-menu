@@ -17,7 +17,7 @@ $pink: #e83e8c;
 
 $primary: $red;
 $secondary: $pink;
-$dark: #1b1b1c;
+$dark: #202020;
 $white: white;
 $black: #0f0f10;
 
@@ -36,7 +36,7 @@ $code-color: $secondary;
 
 $light: $gray-200;
 
-$body-bg: $black;
+$body-bg: $dark;
 
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';

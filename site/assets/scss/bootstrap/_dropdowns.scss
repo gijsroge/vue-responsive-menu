@@ -1,0 +1,12 @@
+.dropdown-black {
+  background-color: $black;
+
+  .dropdown-item {
+    color: $body-color;
+    @include e-link($body-color);
+
+    &:hover, &:focus{
+      background-color: $dark;
+    }
+  }
+}

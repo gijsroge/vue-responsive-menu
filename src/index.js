@@ -22,6 +22,10 @@ export default {
       default() {
         return [];
       }
+    },
+    offset: {
+      type: Number,
+      default: 0
     }
   },
 
@@ -67,7 +71,7 @@ export default {
     // Register observer
     this.observer = new ResizeObserver(entries => {
       entries.forEach(entry => {
-        this.$emit("resize", entry.contentRect.width);
+        this.$emit("menu-resized", entry.contentRect.width);
         this.currentMenuWidth = entry.contentRect.width;
         // Only execute if the width of our menu changed
         if (
@@ -92,6 +96,7 @@ export default {
     moveItem() {
       if (this.isOverflown) {
         const lastElement = this.menuItems[this.menuItems.length - 1] || null;
+        this.$emit("item-to-dropdown", lastElement);
         this.moreMenuItems.unshift(lastElement);
         this.menuItems.pop();
         this.moved = false;
@@ -104,7 +109,9 @@ export default {
           this.moved) &&
         this.moreMenuItems[0]
       ) {
-        this.menuItems.push(this.moreMenuItems[0]);
+        const firstElement = this.moreMenuItems[0];
+        this.menuItems.push(firstElement);
+        this.$emit("item-to-menu", firstElement);
         this.moreMenuItems.shift();
         this.moved = true;
         this.$nextTick(() => {
@@ -139,7 +146,7 @@ export default {
     },
     isOverflown() {
       if (!this.currentMenuWidth) return false;
-      return this.currentMenuWidth < this.totalWidthOfChildren();
+      return this.currentMenuWidth < this.totalWidthOfChildren() + this.offset;
     }
   }
 };

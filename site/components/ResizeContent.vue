@@ -9,7 +9,6 @@ export default {
   async mounted() {
     const module = await import('interactjs')
     const interact = module.default
-    console.log(interact)
     interact(this.$el)
       .resizable({
         // resize from all edges and corners
@@ -39,7 +38,8 @@ export default {
           })
         ]
       })
-      .on('resizemove', function(event) {
+      .on('resizemove', event => {
+        this.$emit('resize')
         var target = event.target
         var x = parseFloat(target.getAttribute('data-x')) || 0
         var y = parseFloat(target.getAttribute('data-y')) || 0

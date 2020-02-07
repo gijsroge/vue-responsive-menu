@@ -8,10 +8,10 @@ A renderless Vue component that will auto detect if menu items don't fit and mov
 
 ----------
 
-###Install
+### Install
 `yarn add vue-responsive-menu`
 
-###Register as a Vue component
+### Register as a Vue component
 ```javascript
 import VueResponsiveMenu from 'vue-responsive-menu'
 
@@ -22,7 +22,7 @@ export default {
 }
 ```
 
-###Pass your menu in the `:nav` prop
+### Pass your menu in the `:nav` prop
 Responsive menu will expose 2 new arrays in the default prop, **1 normal menu** & **1 with the excess items**
 
 ```html

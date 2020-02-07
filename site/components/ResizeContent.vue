@@ -61,6 +61,7 @@ export default {
 <style lang="scss" scoped>
 div {
   touch-action: none;
+  user-select: none;
   position: relative;
 }
 .handle {
@@ -78,5 +79,6 @@ div {
   transform: scaleY(1.5);
   filter: drop-shadow(0 0 50px $black);
   touch-action: pan-x !important;
+  user-select: none;
 }
 </style>

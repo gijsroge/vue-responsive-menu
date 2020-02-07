@@ -156,7 +156,7 @@ export default {
   async mounted() {
     if (!('ResizeObserver' in window)) {
       // Loads polyfill asynchronously, only if required.
-      const module = await import('resize-observer-polyfill')
+      const module = await import('@juggle/resize-observer')
       window.ResizeObserver = module.ResizeObserver
     }
 

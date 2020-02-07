@@ -1,14 +1,14 @@
 <template>
   <div class="root d-flex">
     <div class="flex-grow-1">
-      <div class="grid flex-grow-1 p-3 p-md-6 p-lg-8">
+      <div class="grid flex-grow-1 p-3 p-md-6 p-lg-8 justify-content-center">
         <svg-icon
-          class="logo"
+          class="logo delay-show"
           name="logo"
           style="width: 3.5rem; height: 3.5rem"
         />
 
-        <div>
+        <div class="delay-show">
           <h1 class="font-weight-light m-0">
             {{ name }}
           </h1>
@@ -20,12 +20,12 @@
         </div>
 
         <div class="description py-md-5 mt-3 mt-md-4">
-          <p class="font-size-lg headings-font-family">
+          <p class="font-size-lg headings-font-family delay-show">
             A renderless Vue component using Resize Observer to detect if menu
             items dont't fit its parent and moves them to a separate menu.
           </p>
 
-          <div class="d-flex align-items-center mb-5">
+          <div class="d-flex align-items-center mb-5 delay-show">
             <a
               class="btn btn-sm btn-secondary btn-twitter mr-3"
               href="https://twitter.com/intent/tweet?text=Vue responsive menu — Auto detect if menu items don't fit and moves them to a separate dropdown.%0a%0a👉 vue-responsive-menu.netlify.com"
@@ -119,7 +119,7 @@
           </div>
         </div>
 
-        <div class="content">
+        <div class="content delay-show">
           <h2 class="h4 text-dark-gray base-font-family font-weight-normal">
             How to use
           </h2>
@@ -135,7 +135,8 @@
             <b class="">1 normal menu</b> and
             <b class="">1 with the excess items</b>.
           </p>
-          <pre><code class="language-html font-size-sm">{{templateCode}}</code></pre><!--
+          <pre><code class="language-html font-size-sm">{{templateCode}}</code></pre>
+          <!--
           <pre><code class="language-html font-size-sm">{{scriptCode}}</code></pre>-->
         </div>
       </div>
@@ -319,7 +320,14 @@ export default {
 </script>
 
 <style lang="scss">
-pre {
+.delay-show {
+  @keyframes delay-show {
+    to {
+      opacity: 1;
+    }
+  }
+  opacity: 0;
+  animation: delay-show forwards 7s 2s;
 }
 @keyframes menuWidth {
   from {
@@ -354,13 +362,13 @@ pre {
 }
 .resizable-component {
   height: auto !important;
-  animation: 1.5s menuWidth 2 alternate ease-in-out;
+  animation: 1.5s .5s menuWidth 2 alternate ease-in-out;
 }
 </style>
 
 <style lang="scss" scoped>
 .logo {
-  @include media-breakpoint-up(md){
+  @include media-breakpoint-up(md) {
     justify-self: center;
   }
 }

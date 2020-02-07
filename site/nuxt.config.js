@@ -70,7 +70,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [{ src: '~/plugins/vue-prism.js', mode: 'client' }],
+  plugins: [
+    { src: '~/plugins/vue-prism.js', mode: 'client' },
+    { src: '~plugins/ga.js', mode: 'client' }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -101,9 +104,9 @@ export default {
       }
     },
     extend(config, ctx) {
-      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'));
+      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
 
-      svgRule.test = /\.(png|jpe?g|gif|webp)$/;
+      svgRule.test = /\.(png|jpe?g|gif|webp)$/
 
       config.module.rules.push({
         test: /\.svg$/,
@@ -112,20 +115,20 @@ export default {
             resourceQuery: /inline/,
             loader: 'file-loader',
             query: {
-              name: 'assets/[name].[hash:8].[ext]',
-            },
+              name: 'assets/[name].[hash:8].[ext]'
+            }
           },
           {
             loader: 'vue-svg-loader',
             options: {
               // Optional svgo options
               svgo: {
-                plugins: [{ removeViewBox: false }],
-              },
-            },
-          },
-        ],
-      });
-    },
+                plugins: [{ removeViewBox: false }]
+              }
+            }
+          }
+        ]
+      })
+    }
   }
 }

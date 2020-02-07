@@ -145,17 +145,30 @@
 
         <div class="content delay-show">
           <h2 class="h4 text-dark-gray base-font-family font-weight-normal">
-            How to use
+            How to use (3 simple steps)
           </h2>
-          <h3>Install {{ name }}</h3>
+          <h3 id="1">
+            <a class="text-muted text-decoration-none" href="#1">1).</a> Install
+            {{ name }}
+          </h3>
           <pre><code class="language-markup">yarn add vue-responsive-menu</code></pre>
 
-          <h3>Register as a Vue component</h3>
+          <h3 id="2">
+            <a class="text-muted text-decoration-none" href="#2">2).</a>
+            Register as a Vue component
+          </h3>
           <pre><code class="language-js font-size-sm">{{jsCode}}</code></pre>
 
-          <h3>Pass your menu in the <code>:nav</code> prop</h3>
-          <p class="text-muted">
-            {{ name }} will expose 2 new arrays in the default prop, <br />
+          <h3 id="3">
+            <a class="text-muted text-decoration-none" href="#3">3).</a> Insert
+            your menu inside the component
+          </h3>
+          <p>
+            Pass your <code class="language-markup">array</code> of menu items
+            in the component's <code class="language-markup">:nav</code> prop
+          </p>
+          <p>
+            The component will expose 2 new arrays in the default prop,
             <b class="">1 normal menu</b> and
             <b class="">1 with the excess items</b>.
           </p>
@@ -433,6 +446,11 @@ export default {
 
 <style lang="scss">
 .options-table {
+  tbody tr {
+    &:nth-child(odd) {
+      background-color: rgba($black, 1);
+    }
+  }
   td,
   th {
     padding: 0.5rem;

@@ -203,9 +203,24 @@
                 <td><code class="language-js font-size-sm">'label'</code></td>
                 <td>String</td>
                 <td>
-                  Key to read the menu item label. <br /><i class="font-size-sm"
-                    >Only needed if you enable maxCharacters.</i
-                  >
+                  <p class="font-size-base">
+                    Key to read the menu item label. <br /><i
+                      class="font-size-sm"
+                      >Only needed if you enable maxCharacters.</i
+                    >
+                  </p>
+                </td>
+              </tr>
+              <tr>
+                <td>offset</td>
+                <td><code class="language-js font-size-sm">'number'</code></td>
+                <td><code class="language-js font-size-sm">0</code></td>
+                <td>
+                  <p class="font-size-base">
+                    Adds x amount of pixels to the total width of menu items.
+                    This causes menu items to be moved more quickly to the more
+                    dropdown
+                  </p>
                 </td>
               </tr>
             </tbody>

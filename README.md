@@ -89,11 +89,12 @@ Responsive menu will expose 2 new arrays in the default prop, **1 normal menu** 
 
 ### Props
 
-| Prop           | Type                  | Default   | Description                                                               |
-| -------------- | --------------------- | --------- | ------------------------------------------------------------------------- |
+| Prop           | Type                  | Default   | Description                                                                                                                    |
+| -------------- | --------------------- | --------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | :nav           | `array<object>`       | `[]`      |
 | :maxCharacters | `number` or `boolean` | `false`   |
-| label          | string                | `'label'` | Key to read the menu item label. Only needed if you enable maxCharacters. |
+| label          | `string`              | `'label'` | Key to read the menu item label. Only needed if you enable maxCharacters.                                                      |
+| offset         | `number`              | `0`       | Adds x amount of pixels to the total width of menu items. This causes menu items to be moved more quickly to the more dropdown |
 
 ### Events
 

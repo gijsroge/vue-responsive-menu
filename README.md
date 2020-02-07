@@ -6,7 +6,7 @@ A renderless Vue component that will auto detect if menu items don't fit and mov
 
 [![Vue responsive menu demo](https://vue-responsive-menu.netlify.com/demo.gif)](https://vue-responsive-menu.netlify.com/)
 
-#### Take a look at the **[Demo](https://vue-responsive-menu.netlify.com/)** site.
+## 👉 **[Demo](https://vue-responsive-menu.netlify.com/)** site. 👈
 
 ---
 

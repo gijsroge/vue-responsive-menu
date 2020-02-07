@@ -184,8 +184,8 @@ export default {
       templateCode: `<!-- Renderless component that exposes 2 arrays based on the array you pass in the nav prop. -->
 <VueResponsiveMenu #default="{ menuItems, moreMenuItems}" :nav="mainMenu.items">
 
-  <!-- Default menu -->
   <ul>
+    <!-- Default menu -->
     <li v-for="item in menuItems" :key="item.id">
       <a :href="item.href">
         {{ item.name }}

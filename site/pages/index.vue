@@ -118,6 +118,24 @@
               </div>
             </VueResponsiveMenu>
           </div>
+
+          <section class="delay-show">
+            <h2>Key points</h2>
+            <ul class="list-unstyled">
+              <li>
+                <span class="mr-2">✅</span> Nuxt/SSR support out of the box.
+              </li>
+              <li>
+                <span class="mr-2">🎨</span> No styling included, only exposes
+                reactive state.
+              </li>
+              <li><span class="mr-2">☁</span>️ Lightweight <span class="text-muted">1.14kb</span></li>
+              <li>
+                <span class="mr-2">💪</span> Resize Observer for better
+                performance.
+              </li>
+            </ul>
+          </section>
         </div>
 
         <div class="content delay-show">

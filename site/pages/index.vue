@@ -48,6 +48,7 @@
 
           <div class="example example--1 py-5">
             <VueResponsiveMenu
+              v-if="responsiveMenuReady"
               :maxCharacters="false"
               class="resize-parent"
               :class="{ 'has-resized': hasResized }"
@@ -145,13 +146,24 @@
 </template>
 
 <script>
-import VueResponsiveMenu from '../../src/index'
+import Vue from 'vue'
 import Popper from 'vue-popperjs'
 export default {
   components: {
-    VueResponsiveMenu,
     FocusLock: () => import('vue-focus-lock'),
     Popper
+  },
+  async mounted() {
+    if (!('ResizeObserver' in window)) {
+      // Loads polyfill asynchronously, only if required.
+      const module = await import('resize-observer-polyfill')
+      window.ResizeObserver = module.ResizeObserver
+    }
+
+    const VueResponsiveMenu = await import('../../src/index')
+    console.log(VueResponsiveMenu)
+    Vue.component('VueResponsiveMenu', VueResponsiveMenu.default)
+    this.responsiveMenuReady = true
   },
   methods: {
     updatePopper() {
@@ -172,6 +184,7 @@ export default {
   created() {},
   data() {
     return {
+      responsiveMenuReady: false,
       name: 'Responsive menu',
       hasResized: false,
       jsCode: `import VueResponsiveMenu from 'vue-responsive-menu'
@@ -362,7 +375,7 @@ export default {
 }
 .resizable-component {
   height: auto !important;
-  animation: 1.5s .5s menuWidth 2 alternate ease-in-out;
+  animation: 1.5s 0.5s menuWidth 2 alternate ease-in-out;
 }
 </style>
 

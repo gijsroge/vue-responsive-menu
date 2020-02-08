@@ -125,6 +125,6 @@ Responsive menu will expose 2 new arrays in the default prop, **1 normal menu** 
 - [x] Make a public example site
 - [x] Create GIF in documentation
 - [x] Add documentation
-- [ ] Write tests
-- [ ] Setup CI
+- [x] Write tests
+- [x] Setup CI
 - [ ] Add contribution guidelines

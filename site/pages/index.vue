@@ -459,7 +459,7 @@ export default {
 .options-table {
   tbody tr {
     &:nth-child(odd) {
-      background-color: rgba($black, 1);
+      background-color: rgba($black, .3);
     }
   }
   td,

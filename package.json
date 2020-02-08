@@ -10,7 +10,6 @@
     "serve": "vue-cli-service serve demo",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
-    "test": "node node_modules/@vue/cli-service/bin/vue-cli-service.js test:e2e --headless",
     "lint": "vue-cli-service lint",
     "build:npm": "rollit",
     "release": "release-it"

@@ -49,7 +49,6 @@
           <div class="example example--1 py-5 mb-5">
             <ResizeContent class="resize-animation">
               <VueResponsiveMenu
-                v-if="responsiveMenuReady"
                 @menu-resized="updatePopper()"
                 :maxCharacters="false"
                 class="resize-parent"
@@ -273,11 +272,14 @@
 <script>
 import Vue from 'vue'
 import Popper from 'vue-popperjs'
+import ResizeContent from '~/components/ResizeContent.vue'
+import VueResponsiveMenu from '../../src/index'
 
 export default {
   components: {
     FocusLock: () => import('vue-focus-lock'),
-    ResizeContent: () => import('~/components/ResizeContent.vue'),
+    ResizeContent,
+    VueResponsiveMenu,
     Popper
   },
   async mounted() {
@@ -286,10 +288,6 @@ export default {
       const module = await import('@juggle/resize-observer')
       window.ResizeObserver = module.ResizeObserver
     }
-
-    const VueResponsiveMenu = await import('../../src/index')
-    Vue.component('VueResponsiveMenu', VueResponsiveMenu.default)
-    this.responsiveMenuReady = true
 
     setTimeout(() => {
       if (typeof this.$refs.popper !== 'undefined') {
@@ -315,7 +313,6 @@ export default {
   },
   data() {
     return {
-      responsiveMenuReady: false,
       name: 'Responsive menu',
       hasResized: false,
       jsCode: `import VueResponsiveMenu from 'vue-responsive-menu'
@@ -476,6 +473,10 @@ export default {
     to {
       opacity: 1;
     }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    opacity: 1;
   }
   opacity: 0;
   animation: delay-show forwards 4s 2s;

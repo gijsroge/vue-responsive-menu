@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v2.0.0
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
-      - name: e2e tests
-        uses: borales/actions-yarn@v2.0.0
+      - name: Cypress run
+        uses: cypress-io/github-action@v1
         with:
-          cmd: test
+          start: yarn serve

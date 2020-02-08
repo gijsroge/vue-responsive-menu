@@ -270,7 +270,6 @@
 </template>
 
 <script>
-import Vue from 'vue'
 import Popper from 'vue-popperjs'
 import ResizeContent from '~/components/ResizeContent.vue'
 import VueResponsiveMenu from '../../src/index'

@@ -47,7 +47,6 @@ export default {
     } else {
       this.menuItems = this.nav.filter(navItem => {
         if (this.menuCharacters < this.maxCharacters) {
-          console.log(this.maxCharacters);
           return navItem;
         }
       });
@@ -86,6 +85,12 @@ export default {
     });
 
     // Attach resize handler to monitor menu width
+    if (!this.element) {
+      console.warn(
+        "Vue responsive menu: root element does not contain more then 1 child. If you have a nested menu please mark your menu with the 'data-vue-responsive-menu' attribute."
+      );
+      return;
+    }
     this.observer.observe(this.element);
   },
 

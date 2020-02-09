@@ -24,4 +24,20 @@ describe("Test core functionality", () => {
       .children()
       .should("have.length", 2);
   });
+
+  it("Should render all items because of incompatible root element.", () => {
+    cy.viewport(1140, 660);
+    cy.visit("/");
+    cy.get('[data-cypress="mainnav4"] ul')
+      .children()
+      .should("have.length", 10);
+  });
+
+  it("Renders 9 items with a nested menu marked with a data attribute 'data-vue-responsive-menu'", () => {
+    cy.viewport(1140, 660);
+    cy.visit("/");
+    cy.get('[data-cypress="mainnav5"] [data-vue-responsive-menu]')
+      .children()
+      .should("have.length", 9);
+  });
 });

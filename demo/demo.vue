@@ -80,7 +80,7 @@
       </ul>
     </VueResponsiveMenu>
 
-    <h3 class="mb-4">Nested menu</h3>
+    <h3 class="mb-4">Incompatible root element</h3>
     <VueResponsiveMenu
       class="mb-5"
       #default="{ menuItems, moreMenuItems}"
@@ -88,8 +88,37 @@
       data-cypress="mainnav4"
     >
       <div>
+        <ul class="mainnav list-unstyled d-flex flex-wrap">
+          <li
+            class="p-2 px-4 bg-light border"
+            v-for="menuItem in menuItems"
+            :key="menuItem.id"
+          >
+            {{ menuItem.label }}
+          </li>
+          <li class="p-2 px-4 bg-light border" v-if="moreMenuItems.length > 0">
+            more
+            <ul class="list-unstyled p-3 position-absolute bg-light">
+              <li v-for="moreMenuItem in moreMenuItems" :key="moreMenuItem.id">
+                {{ moreMenuItem.label }} (more)
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </VueResponsiveMenu>
+
+    <h3 class="mb-4">Nested root element</h3>
+    <VueResponsiveMenu
+      class="mb-5"
+      #default="{ menuItems, moreMenuItems}"
+      :nav="navigation()"
+      data-cypress="mainnav5"
+    >
+      <div>
         <ul
           class="mainnav list-unstyled d-flex flex-wrap"
+          data-vue-responsive-menu
         >
           <li
             class="p-2 px-4 bg-light border"

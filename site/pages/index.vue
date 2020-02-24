@@ -59,7 +59,7 @@
               >
                 <ul
                   data-vue-responsive-menu
-                  class="demo-nav demo-nav--1 list-unstyled d-flex flex-wrap font-weight-bold flex-grow-1 mb-0"
+                  class="demo-nav demo-nav--1 list-unstyled d-flex text-nowrap font-weight-bold flex-grow-1 mb-0"
                 >
                   <li
                     class="d-inline-block"
@@ -459,7 +459,7 @@ export default {
 .options-table {
   tbody tr {
     &:nth-child(odd) {
-      background-color: rgba($black, .3);
+      background-color: rgba($black, 0.3);
     }
   }
   td,
@@ -478,7 +478,7 @@ export default {
     opacity: 1;
   }
   opacity: 0;
-  animation: delay-show forwards 4s 2s;
+  animation: delay-show forwards 4s 0.5s;
 }
 @keyframes menuWidth {
   from {
@@ -512,7 +512,7 @@ export default {
   @include media-breakpoint-up(md) {
     align-items: center;
     grid-column-gap: 3rem;
-    grid-template-columns: 100px minmax(100px, 1200px);
+    grid-template-columns: 100px minmax(100px, 1150px);
     grid-template-rows: auto auto;
     grid-template-areas:
       'logo header'
@@ -521,10 +521,10 @@ export default {
   }
 
   @include media-breakpoint-up(lg) {
-    grid-template-columns: 100px minmax(100px, 1200px);
+    grid-template-columns: 100px minmax(100px, 1150px);
   }
   @include media-breakpoint-up(xxl) {
-    grid-template-columns: 300px minmax(100px, 1200px);
+    grid-template-columns: 300px minmax(100px, 1150px);
   }
 }
 
@@ -533,6 +533,11 @@ export default {
 }
 .content {
   grid-area: content;
+}
+.demo-nav {
+  padding: $btn-focus-width * 3;
+  margin-left: -$btn-focus-width * 3;
+  overflow: hidden;
 }
 .demo-nav--1 {
   > li {

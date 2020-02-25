@@ -18,6 +18,7 @@
   "module": "dist/vue-responsive-menu.es.js",
   "browser": "dist/vue-responsive-menu.es.js",
   "unpkg": "dist/vue-responsive-menu.js",
+  "homepage": "https://vue-responsive-menu.netlify.com/",
   "repository": {
     "type": "git",
     "url": "https://github.com/gijsroge/vue-responsive-menu.git"

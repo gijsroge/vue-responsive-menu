@@ -18,6 +18,10 @@
   "module": "dist/vue-responsive-menu.es.js",
   "browser": "dist/vue-responsive-menu.es.js",
   "unpkg": "dist/vue-responsive-menu.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gijsroge/vue-responsive-menu.git"
+  },
   "files": [
     "src",
     "dist/*.js",

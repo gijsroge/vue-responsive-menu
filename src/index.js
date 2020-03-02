@@ -67,6 +67,9 @@ export default {
         }
       });
     }
+
+    this.$emit("moreMenuItems", this.moreMenuItems);
+    this.$emit("menuItems", this.menuItems);
   },
 
   mounted() {

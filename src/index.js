@@ -43,35 +43,13 @@ export default {
   watch: {
     nav(nav) {
       this.menuItems = nav;
+      this.preRender();
+      this.moveItem();
     }
   },
 
   created() {
-    /* Presort menu items if maxCharacters is set. Useful for when you pre-render or SSR */
-    if (!this.maxCharacters) {
-      this.menuItems = this.nav;
-    } else {
-      let total = 0;
-      this.menuItems = this.nav.filter(navItem => {
-        total += navItem[this.label].length;
-        if (total < this.maxCharacters) {
-          return navItem;
-        }
-      });
-    }
-
-    if (!this.maxCharacters) {
-      this.moreMenuItems = [];
-    } else {
-      let total = 0;
-      this.moreMenuItems = this.nav.filter(navItem => {
-        total += navItem[this.label].length;
-        if (total >= this.maxCharacters) {
-          return navItem;
-        }
-      });
-    }
-
+    this.preRender();
     this.$emit("moreMenuItems", this.moreMenuItems);
     this.$emit("menuItems", this.menuItems);
   },
@@ -108,6 +86,32 @@ export default {
   },
 
   methods: {
+    preRender() {
+      /* Presort menu items if maxCharacters is set. Useful for when you pre-render or SSR */
+      if (!this.maxCharacters) {
+        this.menuItems = this.nav;
+      } else {
+        let total = 0;
+        this.menuItems = this.nav.filter(navItem => {
+          total += navItem[this.label].length;
+          if (total < this.maxCharacters) {
+            return navItem;
+          }
+        });
+      }
+
+      if (!this.maxCharacters) {
+        this.moreMenuItems = [];
+      } else {
+        let total = 0;
+        this.moreMenuItems = this.nav.filter(navItem => {
+          total += navItem[this.label].length;
+          if (total >= this.maxCharacters) {
+            return navItem;
+          }
+        });
+      }
+    },
     moveItem() {
       const exceededCharacterCount =
         this.maxCharacters && this.menuCharacters > this.maxCharacters;

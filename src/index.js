@@ -51,8 +51,10 @@ export default {
     if (!this.maxCharacters) {
       this.menuItems = this.nav;
     } else {
+      let total = 0;
       this.menuItems = this.nav.filter(navItem => {
-        if (this.menuCharacters < this.maxCharacters) {
+        total += navItem[this.label].length;
+        if (total < this.maxCharacters) {
           return navItem;
         }
       });
@@ -61,8 +63,10 @@ export default {
     if (!this.maxCharacters) {
       this.moreMenuItems = [];
     } else {
+      let total = 0;
       this.moreMenuItems = this.nav.filter(navItem => {
-        if (this.moreMenuCharacters >= this.maxCharacters) {
+        total += navItem[this.label].length;
+        if (total >= this.maxCharacters) {
           return navItem;
         }
       });
@@ -114,6 +118,8 @@ export default {
         this.moreMenuItems.unshift(lastElement);
         this.menuItems.pop();
         this.moved = false;
+        this.$emit("moreMenuItems", this.moreMenuItems);
+        this.$emit("menuItems", this.menuItems);
         this.$nextTick(() => {
           this.moveItem();
         });
@@ -129,6 +135,8 @@ export default {
         this.$emit("item-to-menu", firstElement);
         this.moreMenuItems.shift();
         this.moved = true;
+        this.$emit("moreMenuItems", this.moreMenuItems);
+        this.$emit("menuItems", this.menuItems);
         this.$nextTick(() => {
           this.moveItem();
         });
@@ -154,11 +162,6 @@ export default {
   computed: {
     menuCharacters() {
       return this.menuItems.reduce((total, menuItem) => {
-        return (total += menuItem[this.label].length);
-      }, 0);
-    },
-    moreMenuCharacters() {
-      return this.moreMenuItems.reduce((total, menuItem) => {
         return (total += menuItem[this.label].length);
       }, 0);
     },

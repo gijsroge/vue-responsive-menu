@@ -8,7 +8,7 @@ A renderless Vue component that will auto detect if menu items don't fit and mov
 
 [![Vue responsive menu demo](https://vue-responsive-menu.netlify.com/demo.gif)](https://vue-responsive-menu.netlify.com/)
 
-## 👉 **[Demo](https://vue-responsive-menu.netlify.com/)** 👈 
+## 👉 **[Demo](https://vue-responsive-menu.netlify.com/)** 👈
 
 ---
 
@@ -100,11 +100,13 @@ Responsive menu will expose 2 new arrays in the default prop, **1 normal menu** 
 
 ### Events
 
-| Name              | Payload  | Description           |
-| ----------------- | -------- | --------------------- |
-| @menu-resized     | `number` | current width of menu |
-| @item-to-dropdown | `object` | Item from nav prop    |
-| @item-to-menu     | `object` | Item from nav prop    |
+| Name              | Payload  | Description                      |
+| ----------------- | -------- | -------------------------------- |
+| @menu-resized     | `number` | current width of menu            |
+| @item-to-dropdown | `object` | Item from nav prop               |
+| @item-to-menu     | `object` | Item from nav prop               |
+| @moreMenuItems    | `array`  | Current array of more menu items |
+| @menuItems        | `array`  | Current array of menu items      |
 
 ### Example with options
 

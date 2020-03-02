@@ -40,6 +40,12 @@ export default {
     };
   },
 
+  watch: {
+    nav(nav) {
+      this.menuItems = nav;
+    }
+  },
+
   created() {
     /* Presort menu items if maxCharacters is set. Useful for when you pre-render or SSR */
     if (!this.maxCharacters) {

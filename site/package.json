@@ -19,7 +19,7 @@
     "@nuxtjs/svg-sprite": "^0.4.7",
     "bootstrap": "^4.4.1",
     "interactjs": "^1.8.4",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "nuxt": "^2.0.0",
     "postcss-inline-svg": "^4.1.0",
     "sass-loader": "^8.0.2",
